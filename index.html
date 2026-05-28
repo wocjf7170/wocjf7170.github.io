@@ -2,7 +2,7 @@
 <html lang="ko">
 
 <head>
-	<title>심재철 | 개발자 포트폴리오</title>
+	<title>심재철 | 웹 이력서</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<script src="https://kit.fontawesome.com/5a0fbe0262.js" crossorigin="anonymous"></script>
@@ -20,27 +20,209 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<style>
-		.importantContent { color: #000; font-weight: 700; }
-		.content { color: #333; }
-		.achievement-card {
-			background: #f8f9fa;
-			border-radius: 10px;
-			padding: 20px;
-			margin-bottom: 20px;
-			border-left: 5px solid #3e64ff;
+		body {
+			background: #f5f7fb;
+			color: #243042;
 		}
-		.skill-badge {
-			display: inline-block;
-			padding: 5px 15px;
-			background: #e7e7e7;
-			border-radius: 20px;
-			margin: 5px;
+		.resume-shell {
+			max-width: 1080px;
+			margin: 0 auto;
+			padding: 120px 20px 60px;
+		}
+		.resume-hero {
+			background: #ffffff;
+			border: 1px solid #e7ebf2;
+			border-radius: 8px;
+			padding: 36px;
+			box-shadow: 0 12px 36px rgba(31, 45, 61, 0.08);
+		}
+		.resume-name {
+			font-size: 42px;
+			font-weight: 800;
+			color: #111827;
+			margin-bottom: 8px;
+			letter-spacing: 0;
+		}
+		.resume-title {
+			font-size: 18px;
+			color: #3e64ff;
+			font-weight: 700;
+			margin-bottom: 18px;
+		}
+		.resume-summary {
+			font-size: 17px;
+			line-height: 1.8;
+			color: #364152;
+			margin-bottom: 0;
+		}
+		.resume-section {
+			background: #ffffff;
+			border: 1px solid #e7ebf2;
+			border-radius: 8px;
+			padding: 28px;
+			margin-top: 22px;
+		}
+		.section-title {
+			font-size: 22px;
+			font-weight: 800;
+			color: #111827;
+			margin-bottom: 18px;
+			padding-bottom: 10px;
+			border-bottom: 2px solid #eef2f7;
+		}
+		.info-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 10px 24px;
+			margin-top: 24px;
+		}
+		.info-item {
+			display: flex;
+			gap: 12px;
+			font-size: 15px;
+			line-height: 1.6;
+		}
+		.info-label {
+			width: 96px;
+			flex: 0 0 96px;
+			color: #667085;
+			font-weight: 700;
+		}
+		.info-value {
+			color: #243042;
+		}
+		.badge-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.badge-list li {
+			background: #eef3ff;
+			color: #2446a8;
+			border: 1px solid #dbe5ff;
+			border-radius: 999px;
+			padding: 6px 12px;
 			font-size: 14px;
-			font-weight: 500;
+			font-weight: 600;
 		}
-		.date-tag { color: #3e64ff; font-weight: 600; font-size: 14px; }
-		.hero-wrap .text h2 { font-weight: 300; }
-		.hero-wrap .text h1 { font-size: 50px; }
+		.timeline-item {
+			padding: 20px 0;
+			border-bottom: 1px solid #edf1f7;
+		}
+		.timeline-item:last-child {
+			border-bottom: 0;
+			padding-bottom: 0;
+		}
+		.item-head {
+			display: flex;
+			justify-content: space-between;
+			gap: 18px;
+			align-items: flex-start;
+			margin-bottom: 8px;
+		}
+		.item-title {
+			font-size: 20px;
+			font-weight: 800;
+			color: #111827;
+			margin-bottom: 2px;
+		}
+		.item-subtitle {
+			color: #475467;
+			font-weight: 700;
+		}
+		.item-date {
+			color: #3e64ff;
+			font-weight: 800;
+			white-space: nowrap;
+			font-size: 14px;
+		}
+		.clean-list {
+			margin: 12px 0 0;
+			padding-left: 20px;
+			color: #364152;
+		}
+		.clean-list li {
+			margin-bottom: 7px;
+			line-height: 1.7;
+		}
+		.project-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 18px;
+		}
+		.project-card {
+			border: 1px solid #e7ebf2;
+			border-radius: 8px;
+			padding: 22px;
+			background: #fbfcff;
+		}
+		.project-card h3 {
+			font-size: 20px;
+			font-weight: 800;
+			color: #111827;
+			margin-bottom: 8px;
+		}
+		.project-meta {
+			color: #3e64ff;
+			font-size: 14px;
+			font-weight: 800;
+			margin-bottom: 12px;
+		}
+		.btn-resume {
+			display: inline-block;
+			background: #3e64ff;
+			color: #ffffff !important;
+			border-radius: 4px;
+			padding: 10px 16px;
+			font-weight: 700;
+			margin-top: 18px;
+		}
+		.btn-outline-resume {
+			display: inline-block;
+			border: 1px solid #3e64ff;
+			color: #3e64ff !important;
+			border-radius: 4px;
+			padding: 8px 14px;
+			font-weight: 700;
+			margin-top: 12px;
+		}
+		.statement {
+			background: #f8faff;
+			border-left: 4px solid #3e64ff;
+			padding: 18px 20px;
+			margin-bottom: 16px;
+			line-height: 1.8;
+			color: #364152;
+		}
+		.navbar-brand {
+			font-weight: 800;
+		}
+		@media (max-width: 767.98px) {
+			.resume-shell {
+				padding: 92px 14px 40px;
+			}
+			.resume-hero,
+			.resume-section {
+				padding: 22px;
+			}
+			.resume-name {
+				font-size: 34px;
+			}
+			.info-grid,
+			.project-grid {
+				grid-template-columns: 1fr;
+			}
+			.item-head {
+				display: block;
+			}
+			.item-date {
+				display: block;
+				margin-top: 6px;
+			}
+		}
 	</style>
 </head>
 
@@ -48,7 +230,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Shim JaeCheol</a>
+			<a class="navbar-brand" href="#top">Shim JaeCheol</a>
 			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
@@ -56,287 +238,249 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav nav ml-auto">
-					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-					<li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-					<li class="nav-item"><a href="#resume-section" class="nav-link"><span>Experience</span></a></li>
-					<li class="nav-item"><a href="#skills-section" class="nav-link"><span>Skills</span></a></li>
-					<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li>
+					<li class="nav-item"><a href="#summary" class="nav-link"><span>Summary</span></a></li>
+					<li class="nav-item"><a href="#skills" class="nav-link"><span>Skills</span></a></li>
+					<li class="nav-item"><a href="#career" class="nav-link"><span>Career</span></a></li>
+					<li class="nav-item"><a href="#education" class="nav-link"><span>Education</span></a></li>
+					<li class="nav-item"><a href="#projects" class="nav-link"><span>Projects</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<section id="home-section" class="hero-wrap js-fullheight">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row no-gutters slider-text js-fullheight justify-content-center align-items-center">
-				<div class="col-lg-10 ftco-animate d-flex align-items-center">
-					<div class="text text-center">
-						<span class="subheading">Developer Portfolio</span>
-						<h1>심재철</h1>
-						<h2>데이터 집약적 시스템의 효율을 높이는 <br><strong>문제 해결 중심</strong> 개발자입니다.</h2>
-						<p class="mt-4">
-							<a href="#resume-section" class="btn btn-primary py-3 px-4">경력 확인하기</a>
-							<a href="#projects-section" class="btn btn-white py-3 px-4" style="color: #000 !important; border: 1px solid #fff;">프로젝트 보기</a>
-						</p>
-					</div>
-				</div>
+	<main class="resume-shell" id="top">
+		<section class="resume-hero" id="summary">
+			<div class="resume-title">경력 1년 7개월 · 운영개발 / IT 운영</div>
+			<h1 class="resume-name">심재철</h1>
+			<p class="resume-summary">
+				C#(.NET) 기반 운영개발과 MSSQL 데이터 조회 성능 개선 경험을 가진 운영자입니다. 사용자가 시스템을 더 쾌적하게 사용할 수 있도록 문제를 발견하고, 화면과 데이터 흐름을 함께 확인하며 개선하는 과정에서 보람을 느낍니다.
+			</p>
+			<div class="info-grid">
+				<div class="info-item"><span class="info-label">이메일</span><span class="info-value">wocjf7170@gmail.com</span></div>
+				<div class="info-item"><span class="info-label">주소</span><span class="info-value">서울 송파구 송파동</span></div>
+				<div class="info-item"><span class="info-label">포트폴리오</span><span class="info-value"><a href="https://wocjf7170.github.io" target="_blank">wocjf7170.github.io</a></span></div>
+				<div class="info-item"><span class="info-label">GitHub</span><span class="info-value"><a href="https://github.com/wocjf7170" target="_blank">github.com/wocjf7170</a></span></div>
+				<div class="info-item"><span class="info-label">Blog</span><span class="info-value"><a href="https://mungjaesoon.tistory.com" target="_blank">mungjaesoon.tistory.com</a></span></div>
+				<div class="info-item"><span class="info-label">학력</span><span class="info-value">아주대학교 소프트웨어학과 졸업</span></div>
 			</div>
-		</div>
-	</section>
+			<a class="btn-resume" href="resources/이력서_심재철.pdf" target="_blank">이력서 PDF 보기</a>
+		</section>
 
-	<section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
-		<div class="container">
-			<div class="row d-flex no-gutters">
-				<div class="col-md-6 col-lg-6 d-flex">
-					<div class="img-about img d-flex align-items-stretch">
-						<div class="overlay"></div>
-						<div class="img d-flex align-self-stretch align-items-center"
-							style="background-image:url(images/about.png); width: 100%; background-size: contain;">
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-6 pl-md-5 py-5">
-					<div class="row justify-content-start pb-3">
-						<div class="col-md-12 heading-section ftco-animate">
-							<h2 class="mb-4">Professional Summary</h2>
-							<div class="achievement-card">
-								<p class="content">1. <strong>C#(.NET) 기반 MES, HR</strong> 운영 및 개발 (1년 7개월+)</p>
-								<p class="content">2. <strong>MSSQL 쿼리 성능 최적화</strong> (조회 속도 20s → 3s 단축)</p>
-								<p class="content">3. 야놀자 백엔드 개발 과정 <strong>최우수 수료 (2위/65명)</strong></p>
-								<p class="content">4. 1000대 기업 시스템 및 IT 인프라 운영 경험</p>
-							</div>
-							<ul class="about-info mt-4 px-md-0 px-2">
-								<li class="d-flex"><span>Email:</span> <span class="content">wocjf7170@gmail.com</span></li>
-								<li class="d-flex"><span>GitHub:</span> <span><a href="https://github.com/wocjf7170" target="_blank">github.com/wocjf7170</a></span></li>
-								<li class="d-flex"><span>Blog:</span> <span><a href="https://mungjaesoon.tistory.com" target="_blank">mungjaesoon.tistory.com</a></span></li>
-								<li class="d-flex"><span>Education:</span> <span class="content">아주대학교 소프트웨어학과 졸업</span></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+		<section class="resume-section">
+			<h2 class="section-title">간략 소개</h2>
+			<ol class="clean-list">
+				<li>C#(.NET) 기반 MES 운영개발</li>
+				<li>MSSQL 대용량 데이터 조회 성능 개선</li>
+				<li>Java(Spring Boot) 기반 야놀자 백엔드 개발 과정 2등 수료</li>
+				<li>1000대 기업 IT 인프라 운영</li>
+			</ol>
+		</section>
 
-	<section class="ftco-section ftco-no-pb goto-here" id="resume-section">
-		<div class="container">
-			<div class="row justify-content-center pb-5">
-				<div class="col-md-10 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Work Experience</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<!-- Ejemco -->
-					<div class="resume-wrap d-flex ftco-animate achievement-card">
-						<div class="text pl-3">
-							<span class="date-tag">2026.02 - 2026.03</span>
-							<h2>운영개발 주임</h2>
-							<span class="importantContent">㈜이젬코</span>
-							<p class="mt-2"><strong>주요 성과:</strong></p>
-							<ul>
-								<li>BOM 전개 쿼리 성능 최적화: CTE 반복 조회를 Cross Apply 구조로 개선하여 <strong>조회 시간 20s → 3s로 단축</strong></li>
-								<li>WinForm 기반 MES 운영 및 유지보수</li>
-							</ul>
-						</div>
-					</div>
+		<section class="resume-section" id="skills">
+			<h2 class="section-title">나의 스킬</h2>
+			<ul class="badge-list">
+				<li>C#</li>
+				<li>Java</li>
+				<li>HTML/CSS</li>
+				<li>ASP.NET</li>
+				<li>.NET</li>
+				<li>Spring Boot</li>
+				<li>MSSQL</li>
+				<li>SQL</li>
+				<li>Git</li>
+				<li>Docker</li>
+				<li>GitHub</li>
+				<li>CI/CD</li>
+				<li>Microsoft Excel</li>
+				<li>Microsoft PowerPoint</li>
+				<li>Microsoft Word</li>
+				<li>Microsoft Teams</li>
+				<li>Microsoft Outlook</li>
+			</ul>
+		</section>
 
-					<!-- Hansol -->
-					<div class="resume-wrap d-flex ftco-animate achievement-card">
-						<div class="text pl-3">
-							<span class="date-tag">2024.05 - 2025.07</span>
-							<h2>운영개발 사원</h2>
-							<span class="importantContent">한솔섬유㈜</span>
-							<p class="mt-2"><strong>주요 성과:</strong></p>
-							<ul>
-								<li>MES & HR 시스템 운영 및 기능 개발 (C#, ASP.NET)</li>
-								<li>조회 성능 최적화: 실행 계획 분석을 통한 인덱스 최적화로 <strong>대용량 데이터 조회 속도 개선</strong></li>
-								<li>보안 강화: 민감정보(주민번호, 계좌번호) <strong>AES-128 암호화 적용</strong></li>
-								<li>업무 자동화: 사내 행정(차량, 회의실 예약) 시스템 전산화로 효율성 증대</li>
-							</ul>
-						</div>
+		<section class="resume-section" id="career">
+			<h2 class="section-title">경력</h2>
+			<div class="timeline-item">
+				<div class="item-head">
+					<div>
+						<h3 class="item-title">운영개발 · 주임</h3>
+						<div class="item-subtitle">㈜이젬코</div>
 					</div>
-
-					<!-- Solid IT -->
-					<div class="resume-wrap d-flex ftco-animate achievement-card">
-						<div class="text pl-3">
-							<span class="date-tag">2021.07 - 2021.08</span>
-							<h2>웹 개발 인턴</h2>
-							<span class="importantContent">솔리드아이티</span>
-							<p class="mt-2"><strong>주요 성과:</strong></p>
-							<ul>
-								<li>3D 설계 프로그램 라이선스 발급 웹 시스템 개발 (Java, Spring Boot)</li>
-								<li>AWS EC2 기반 서비스 배포 및 운영 환경 구축</li>
-								<li>관리자 페이지 구현을 통한 라이선스 관리 프로세스 전산화</li>
-							</ul>
-						</div>
-					</div>
+					<div class="item-date">2026.02 ~ 2026.03 · 2개월</div>
 				</div>
+				<ul class="clean-list">
+					<li>MES 운영개발 (C#, .NET, WinForm, MSSQL)</li>
+					<li>BOM 전개 쿼리 성능 97% 개선, CTE 내 CROSS APPLY + TOP 1 방식으로 최신일자 BOM 조회 구조 개선</li>
+					<li>작업지시서 등 엑셀 추출 기능 개발</li>
+					<li>사용자 문의 대응 및 장애 처리</li>
+				</ul>
 			</div>
 
-			<!-- Education Section Added -->
-			<div class="row justify-content-center pb-5 mt-5">
-				<div class="col-md-10 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Education & Training</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="resume-wrap d-flex ftco-animate achievement-card">
-						<div class="text pl-3">
-							<span class="date-tag">2023.07 - 2024.01</span>
-							<h2>야놀자 백엔드 개발 부트캠프</h2>
-							<span class="importantContent">패스트캠퍼스 | 최우수 수료 (2위/65명)</span>
-							<p class="mt-2"><strong>주요 활동:</strong></p>
-							<ul>
-								<li>총 1,096시간의 집중 교육 과정 이수</li>
-								<li>Spring Boot 기반 백엔드 아키텍처 및 CI/CD 파이프라인 실습</li>
-								<li>팀 프로젝트를 통한 협업 및 문제 해결 역량 강화</li>
-							</ul>
-						</div>
+			<div class="timeline-item">
+				<div class="item-head">
+					<div>
+						<h3 class="item-title">IT · 사원</h3>
+						<div class="item-subtitle">한솔섬유㈜</div>
 					</div>
+					<div class="item-date">2024.05 ~ 2025.07 · 1년 3개월</div>
+				</div>
+				<ul class="clean-list">
+					<li>MES, HRS 운영개발 (C#, ASP.NET, cshtml, MSSQL)</li>
+					<li>봉제 공정 실적 조회 성능 85% 개선, 보조 인덱스 추가를 통해 Key Lookup 비용 감소</li>
+					<li>Rack Map 페이지 개발 등 업무 프로세스 전산화</li>
+					<li>주민등록번호, 계좌번호 등 민감정보 AES-128 암호화 적용</li>
+					<li>OA 기기 관리 및 IT 헬프데스크 운영</li>
+					<li>Windows 11 전사 업그레이드 수행: 일정 관리, 대상 장비 분류, 사용자 안내 포함</li>
+					<li>보안 점검 및 IT 비용 관리</li>
+				</ul>
+			</div>
 
-					<div class="resume-wrap d-flex ftco-animate achievement-card">
-						<div class="text pl-3">
-							<span class="date-tag">2016.03 - 2023.02</span>
-							<h2>소프트웨어학과 전공 학사</h2>
-							<span class="importantContent">아주대학교</span>
-							<p class="mt-2">학문적 기초와 프로그래밍 원리에 대한 탄탄한 이해를 바탕으로 졸업하였습니다.</p>
-						</div>
+			<div class="timeline-item">
+				<div class="item-head">
+					<div>
+						<h3 class="item-title">개발 · 인턴/수습</h3>
+						<div class="item-subtitle">솔리드아이티</div>
 					</div>
+					<div class="item-date">2021.07 ~ 2021.08 · 2개월</div>
 				</div>
+				<ul class="clean-list">
+					<li>자사 라이선스 발급 웹 풀스택 개발 (Java, Spring Boot, JSP, MariaDB, AWS EC2)</li>
+					<li>AWS EC2 기반 서비스 배포 및 운영 환경 구축</li>
+					<li>관리자 페이지 개발</li>
+					<li>라이선스 사용 및 발급량 차트 페이지 개발</li>
+				</ul>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section class="ftco-section" id="skills-section">
-		<div class="container">
-			<div class="row justify-content-center pb-5">
-				<div class="col-md-12 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Skills & Competencies</h2>
+		<section class="resume-section" id="education">
+			<h2 class="section-title">학력</h2>
+			<div class="timeline-item">
+				<div class="item-head">
+					<div>
+						<h3 class="item-title">아주대학교 소프트웨어학과 전공심화</h3>
+						<div class="item-subtitle">대학교(4년제) 졸업 · 학점 3.78/4.5</div>
+					</div>
+					<div class="item-date">2016.03 ~ 2023.02</div>
 				</div>
+				<ul class="clean-list">
+					<li>지역: 경기</li>
+					<li>주/야간: 주간</li>
+					<li>교내 성적 장학금 수혜: 원천, 다산 장학</li>
+				</ul>
 			</div>
-			<div class="row">
-				<div class="col-md-3 ftco-animate">
-					<div class="achievement-card">
-						<h4>Backend</h4>
-						<div class="skill-badge">C# / .NET</div>
-						<div class="skill-badge">ASP.NET</div>
-						<div class="skill-badge">Java</div>
-						<div class="skill-badge">Spring Boot</div>
-						<div class="skill-badge">WinForm</div>
-					</div>
-				</div>
-				<div class="col-md-3 ftco-animate">
-					<div class="achievement-card">
-						<h4>Frontend</h4>
-						<div class="skill-badge">HTML/CSS</div>
-						<div class="skill-badge">JavaScript</div>
-						<div class="skill-badge">JSP</div>
-						<div class="skill-badge">Bootstrap</div>
-					</div>
-				</div>
-				<div class="col-md-3 ftco-animate">
-					<div class="achievement-card">
-						<h4>Database</h4>
-						<div class="skill-badge">MSSQL</div>
-						<div class="skill-badge">MySQL</div>
-						<div class="skill-badge">MariaDB</div>
-						<div class="skill-badge">Query Optimization</div>
-					</div>
-				</div>
-				<div class="col-md-3 ftco-animate">
-					<div class="achievement-card">
-						<h4>DevOps & Tools</h4>
-						<div class="skill-badge">Git / GitHub</div>
-						<div class="skill-badge">Docker</div>
-						<div class="skill-badge">AWS EC2</div>
-						<div class="skill-badge">CI/CD</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+		</section>
 
-	<section class="ftco-section ftco-project" id="projects-section">
-		<div class="container">
-			<div class="row justify-content-center pb-5">
-				<div class="col-md-12 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Key Projects</h2>
-				</div>
-			</div>
-			<div class="row">
-				<!-- Yanolja Project (2023-2024) -->
-				<div class="col-md-12 achievement-card ftco-animate">
-					<div class="row">
-						<div class="col-md-8">
-							<span class="date-tag">2023.12 - 2024.01</span>
-							<h3>숙소 양도 웹/앱 서비스 (SCBJ)</h3>
-							<p class="importantContent">야놀자 백엔드 개발 부트캠프 파이널 프로젝트</p>
-							<ul>
-								<li><strong>Role:</strong> 백엔드 API 개발, CI/CD 파이프라인 구축, 인프라 구성</li>
-								<li><strong>Tech:</strong> Spring Boot, MySQL, Redis, Docker, GitHub Actions, AWS</li>
-								<li><strong>Result:</strong> Spring Security+JWT 기반 보안 강화, Caddy2 기반 SSL 적용, 최우수 수료 기여</li>
-							</ul>
-						</div>
-						<div class="col-md-4 text-right">
-							<a href="https://github.com/wocjf7170/scbj-accommodation-transfer-webapp" target="_blank" class="btn btn-outline-primary">GitHub Code</a>
-						</div>
+		<section class="resume-section">
+			<h2 class="section-title">경험 / 활동 / 교육</h2>
+			<div class="timeline-item">
+				<div class="item-head">
+					<div>
+						<h3 class="item-title">야놀자 백엔드 개발 과정</h3>
+						<div class="item-subtitle">Spring Boot 기반 백엔드 개발 과정 최우수 수료 (2/65, 1096시간)</div>
 					</div>
+					<div class="item-date">2023.07 ~ 2024.01</div>
+				</div>
+				<ul class="clean-list">
+					<li>Spring Security(JWT)를 이용한 인증·인가 구현</li>
+					<li>REST Docs로 API 문서화</li>
+					<li>JUnit·Mockito를 이용한 단위/통합 테스트 수행</li>
+					<li>GitHub Actions 기반 CI/CD 파이프라인 구축</li>
+				</ul>
+			</div>
+
+			<div class="timeline-item">
+				<div class="item-head">
+					<div>
+						<h3 class="item-title">아주대학교 / 코딩트레이너</h3>
+						<div class="item-subtitle">교내 Java 수업 실습 및 교외 Java 멘토링</div>
+					</div>
+					<div class="item-date">2022.09 ~ 2022.12</div>
+				</div>
+				<ul class="clean-list">
+					<li>오픈채팅을 활용한 실명 신청 절차 개선</li>
+					<li>매주 3명 이상의 멘티 확보</li>
+				</ul>
+			</div>
+
+			<div class="timeline-item">
+				<div class="item-head">
+					<div>
+						<h3 class="item-title">성남시 / 청년운영위원회</h3>
+						<div class="item-subtitle">성남시 청년 대상 프로그램 기획·운영</div>
+					</div>
+					<div class="item-date">2023.02 ~ 2024.01</div>
+				</div>
+				<ul class="clean-list">
+					<li>1인 가구 대상 고민 나눔 프로그램 운영</li>
+					<li>청년운영위원회 홍보 부스 운영</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="resume-section">
+			<h2 class="section-title">자격 / 어학 / 수상</h2>
+			<div class="info-grid">
+				<div class="info-item"><span class="info-label">2025.09</span><span class="info-value">SQL개발자(SQLD자격) 최종합격</span></div>
+				<div class="info-item"><span class="info-label">2025.09</span><span class="info-value">TOEIC Speaking Test 130점 / Intermediate Mid3</span></div>
+				<div class="info-item"><span class="info-label">2022.10</span><span class="info-value">TOPCIT 3수준, 480점</span></div>
+				<div class="info-item"><span class="info-label">2022.06</span><span class="info-value">교내 성적 장학금 수혜 (원천, 다산 장학)</span></div>
+			</div>
+		</section>
+
+		<section class="resume-section">
+			<h2 class="section-title">취업 우대 사항</h2>
+			<div class="info-grid">
+				<div class="info-item"><span class="info-label">병역</span><span class="info-value">군필</span></div>
+				<div class="info-item"><span class="info-label">복무</span><span class="info-value">육군 / 병장 / 만기전역</span></div>
+				<div class="info-item"><span class="info-label">기간</span><span class="info-value">2017.10 ~ 2019.07</span></div>
+			</div>
+		</section>
+
+		<section class="resume-section">
+			<h2 class="section-title">자기소개서</h2>
+			<div class="statement">
+				<strong>직무 상의 동기</strong><br>
+				저는 시스템을 사용자가 더 쾌적하게 사용할 수 있도록 개선하는 과정에서 보람을 느낍니다. 조회 지연이나 불편한 절차가 단순한 기술 문제가 아니라 업무 흐름에 영향을 줄 수 있는 문제라고 보고, 실제 사용 상황과 데이터 흐름을 함께 확인하며 개선합니다.
+			</div>
+			<div class="statement">
+				<strong>직무 상의 강점</strong><br>
+				문제를 마주했을 때 먼저 스스로 확인하고 해결 방향을 찾아가는 자기주도성이 강점입니다. 화면, 소스, 프로시저를 순서대로 분석하고 필요한 정보를 정리한 뒤 담당자와 검토하며 운영 품질을 높입니다.
+			</div>
+			<div class="statement">
+				<strong>성격 상의 장점과 개선 노력</strong><br>
+				상대방의 입장에서 문제를 바라보고 해결하려는 태도를 가지고 있습니다. 질문이 필요한 상황에서는 관련 자료를 먼저 확인하고, 파악한 내용과 막힌 지점을 정리해 효율적으로 소통하려고 합니다.
+			</div>
+		</section>
+
+		<section class="resume-section" id="projects">
+			<h2 class="section-title">프로젝트</h2>
+			<div class="project-grid">
+				<div class="project-card">
+					<div class="project-meta">2023.12 ~ 2024.01 · 야놀자 백엔드 개발 부트캠프 파이널 프로젝트</div>
+					<h3>숙소 양도 웹/앱 서비스 (SCBJ)</h3>
+					<ul class="clean-list">
+						<li>역할: 백엔드 API 개발, CI/CD 파이프라인 구축, 인프라 구성</li>
+						<li>기술: Spring Boot, MySQL, Redis, Docker, GitHub Actions, AWS</li>
+						<li>결과: Spring Security + JWT 인증/인가, REST Docs 문서화, JUnit/Mockito 테스트, Caddy2 SSL 적용</li>
+					</ul>
+					<a class="btn-outline-resume" href="https://github.com/wocjf7170/scbj-accommodation-transfer-webapp" target="_blank">GitHub Code</a>
 				</div>
 
-				<!-- SolidIT Project (2021) -->
-				<div class="col-md-12 achievement-card ftco-animate">
-					<div class="row">
-						<div class="col-md-8">
-							<span class="date-tag">2021.07 - 2021.08</span>
-							<h3>3D 설계 프로그램 라이선스 발급 시스템</h3>
-							<p class="importantContent">솔리드아이티 개발 인턴 프로젝트</p>
-							<ul>
-								<li><strong>Role:</strong> 웹 개발 (풀스택)</li>
-								<li><strong>Tech:</strong> Java, Spring Boot, JSP, MariaDB, AWS EC2, Git</li>
-								<li><strong>Result:</strong> 수기 관리 프로세스 전산화로 운영 효율 개선, 차트 기반 지표 생성으로 의사결정 지원</li>
-							</ul>
-						</div>
-						<div class="col-md-4 text-right">
-							<a href="https://github.com/wocjf7170/springboot-web-for-reseller" target="_blank" class="btn btn-outline-primary">GitHub Code</a>
-						</div>
-					</div>
+				<div class="project-card">
+					<div class="project-meta">2021.07 ~ 2021.08 · 솔리드아이티 개발 인턴 프로젝트</div>
+					<h3>3D 설계 프로그램 라이선스 발급 시스템</h3>
+					<ul class="clean-list">
+						<li>역할: 웹 개발 풀스택</li>
+						<li>기술: Java, Spring Boot, JSP, MariaDB, AWS EC2, Git</li>
+						<li>결과: 수기 관리 프로세스 전산화, 라이선스 사용/발급량 차트 기반 지표 제공</li>
+					</ul>
+					<a class="btn-outline-resume" href="https://github.com/wocjf7170/springboot-web-for-reseller" target="_blank">GitHub Code</a>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<section class="ftco-section ftco-no-pt" id="values-section">
-		<div class="container">
-			<div class="row justify-content-center pb-5">
-				<div class="col-md-12 heading-section text-center ftco-animate">
-					<h2 class="mb-4">Values & Certifications</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 ftco-animate">
-					<h3>가치관</h3>
-					<blockquote class="achievement-card">
-						<p>"문제는 가만히 있는다고 해결되지 않는다."</p>
-						<small>수천 줄의 소스와 DB를 직접 분석하며 끝까지 해결책을 찾아내는 집요함을 가지고 있습니다. 현업 부서의 고충을 기술적으로 해결할 때 가장 큰 보람을 느낍니다.</small>
-					</blockquote>
-				</div>
-				<div class="col-md-6 ftco-animate">
-					<h3>자격 및 수상</h3>
-					<div class="achievement-card">
-						<ul class="about-info mt-2">
-							<li class="d-flex"><span>2025.09</span> <strong>SQL 개발자 (SQLD)</strong></li>
-							<li class="d-flex"><span>2025.09</span> <strong>TOEIC Speaking IM3 (130점)</strong></li>
-							<li class="d-flex"><span>2024.01</span> <strong>야놀자 부트캠프 최우수 수료 (2위)</strong></li>
-							<li class="d-flex"><span>2022.10</span> <strong>TOPCIT 3수준 (480점)</strong></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	</main>
 
 	<footer class="ftco-footer ftco-section">
 		<div class="container text-center">
