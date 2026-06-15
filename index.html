@@ -2,223 +2,588 @@
 <html lang="ko">
 
 <head>
-	<title>심재철 | 웹 이력서</title>
+	<title>심재철 | Operations Developer</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<script src="https://kit.fontawesome.com/5a0fbe0262.js" crossorigin="anonymous"></script>
-
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/aos.css">
-	<link rel="stylesheet" href="css/ionicons.min.css">
-	<link rel="stylesheet" href="css/flaticon.css">
-	<link rel="stylesheet" href="css/icomoon.css">
-	<link rel="stylesheet" href="css/style.css">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="사용자가 본래 목적에만 집중할 수 있는 시스템을 고민하는 운영개발자 심재철의 포트폴리오">
 	<style>
+		:root {
+			--bg: #f6f5f2;
+			--panel: #ffffff;
+			--ink: #151515;
+			--muted: #696969;
+			--line: #dfddd7;
+			--soft: #eeeeea;
+			--accent: #2d2d2d;
+			--radius: 8px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
 		body {
-			background: #f5f7fb;
-			color: #243042;
-		}
-		.resume-shell {
-			max-width: 1080px;
-			margin: 0 auto;
-			padding: 120px 20px 60px;
-		}
-		.resume-hero {
-			background: #ffffff;
-			border: 1px solid #e7ebf2;
-			border-radius: 8px;
-			padding: 36px;
-			box-shadow: 0 12px 36px rgba(31, 45, 61, 0.08);
-		}
-		.resume-name {
-			font-size: 42px;
-			font-weight: 800;
-			color: #111827;
-			margin-bottom: 8px;
+			margin: 0;
+			background: var(--bg);
+			color: var(--ink);
+			font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			line-height: 1.65;
 			letter-spacing: 0;
 		}
-		.resume-title {
-			font-size: 18px;
-			color: #3e64ff;
-			font-weight: 700;
-			margin-bottom: 18px;
+
+		a {
+			color: inherit;
+			text-decoration: none;
 		}
-		.resume-summary {
-			font-size: 17px;
-			line-height: 1.8;
-			color: #364152;
-			margin-bottom: 0;
+
+		img {
+			max-width: 100%;
+			display: block;
 		}
-		.resume-section {
-			background: #ffffff;
-			border: 1px solid #e7ebf2;
-			border-radius: 8px;
-			padding: 28px;
-			margin-top: 22px;
+
+		.site-header {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			background: rgba(246, 245, 242, 0.88);
+			backdrop-filter: blur(18px);
+			border-bottom: 1px solid var(--line);
 		}
-		.section-title {
-			font-size: 22px;
-			font-weight: 800;
-			color: #111827;
-			margin-bottom: 18px;
-			padding-bottom: 10px;
-			border-bottom: 2px solid #eef2f7;
-		}
-		.info-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 10px 24px;
-			margin-top: 24px;
-		}
-		.info-item {
+
+		.nav {
+			max-width: 1120px;
+			margin: 0 auto;
+			padding: 18px 24px;
 			display: flex;
-			gap: 12px;
+			justify-content: space-between;
+			align-items: center;
+			gap: 24px;
+		}
+
+		.brand {
 			font-size: 15px;
-			line-height: 1.6;
+			font-weight: 800;
+			letter-spacing: 0.02em;
 		}
-		.info-label {
-			width: 96px;
-			flex: 0 0 96px;
-			color: #667085;
-			font-weight: 700;
-		}
-		.info-value {
-			color: #243042;
-		}
-		.badge-list {
+
+		.nav-links {
 			display: flex;
-			flex-wrap: wrap;
-			gap: 8px;
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}
-		.badge-list li {
-			background: #eef3ff;
-			color: #2446a8;
-			border: 1px solid #dbe5ff;
-			border-radius: 999px;
-			padding: 6px 12px;
+			gap: 18px;
+			align-items: center;
+			color: var(--muted);
 			font-size: 14px;
 			font-weight: 600;
 		}
-		.timeline-item {
-			padding: 20px 0;
-			border-bottom: 1px solid #edf1f7;
+
+		.nav-links a:hover {
+			color: var(--ink);
 		}
-		.timeline-item:last-child {
-			border-bottom: 0;
-			padding-bottom: 0;
+
+		.wrap {
+			max-width: 1120px;
+			margin: 0 auto;
+			padding: 72px 24px 56px;
 		}
-		.item-head {
-			display: flex;
-			justify-content: space-between;
-			gap: 18px;
-			align-items: flex-start;
-			margin-bottom: 8px;
+
+		.hero {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 280px;
+			gap: 56px;
+			align-items: center;
+			padding: 56px 0 72px;
+			border-bottom: 1px solid var(--line);
 		}
-		.item-title {
-			font-size: 20px;
-			font-weight: 800;
-			color: #111827;
-			margin-bottom: 2px;
-		}
-		.item-subtitle {
-			color: #475467;
+
+		.kicker {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			margin-bottom: 18px;
+			color: var(--muted);
+			font-size: 14px;
 			font-weight: 700;
 		}
-		.item-date {
-			color: #3e64ff;
+
+		.kicker::before {
+			content: "";
+			width: 8px;
+			height: 8px;
+			border-radius: 999px;
+			background: var(--accent);
+		}
+
+		.hero h2 {
+			margin: 0;
+			max-width: 760px;
+			font-size: 58px;
+			line-height: 1.06;
+			font-weight: 800;
+			letter-spacing: -0.02em;
+		}
+
+		.hero p {
+			max-width: 650px;
+			margin: 24px 0 0;
+			color: #393939;
+			font-size: 20px;
+			line-height: 1.75;
+			font-weight: 500;
+		}
+
+		.hero-note {
+			max-width: 650px;
+			margin-top: 20px;
+			color: #4a4a4a;
+			font-size: 18px;
+			line-height: 1.75;
+			font-weight: 600;
+		}
+
+		.hero-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 28px;
+		}
+
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 42px;
+			padding: 9px 16px;
+			border-radius: 999px;
+			border: 1px solid var(--ink);
+			font-size: 14px;
+			font-weight: 800;
+		}
+
+		.button.primary {
+			background: var(--ink);
+			color: #ffffff;
+		}
+
+		.button.secondary {
+			background: transparent;
+			color: var(--ink);
+		}
+
+		.profile-card {
+			padding: 10px;
+			background: var(--panel);
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			box-shadow: 0 18px 48px rgba(20, 20, 20, 0.08);
+		}
+
+		.profile-card img {
+			width: 100%;
+			aspect-ratio: 3 / 4;
+			object-fit: cover;
+			border-radius: 6px;
+		}
+
+		.quick-facts {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 1px;
+			margin-top: 1px;
+			background: var(--line);
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			overflow: hidden;
+		}
+
+		.fact {
+			background: var(--panel);
+			padding: 18px;
+		}
+
+		.fact strong {
+			display: block;
+			font-size: 20px;
+			line-height: 1.2;
+			margin-bottom: 4px;
+		}
+
+		.fact span {
+			color: var(--muted);
+			font-size: 13px;
+			font-weight: 700;
+		}
+
+		.section {
+			padding: 72px 0 0;
+		}
+
+		.section-head {
+			display: grid;
+			grid-template-columns: 220px minmax(0, 1fr);
+			gap: 40px;
+			margin-bottom: 28px;
+		}
+
+		.section-label {
+			margin: 0;
+			color: var(--muted);
+			font-size: 13px;
+			font-weight: 800;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.section-title {
+			margin: 0;
+			font-size: 34px;
+			line-height: 1.22;
+			font-weight: 800;
+			letter-spacing: -0.01em;
+		}
+
+		.stack {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-top: 24px;
+		}
+
+		.tag {
+			padding: 7px 11px;
+			background: var(--soft);
+			border: 1px solid var(--line);
+			border-radius: 999px;
+			color: #333333;
+			font-size: 13px;
+			font-weight: 700;
+		}
+
+		.timeline {
+			display: grid;
+			gap: 18px;
+		}
+
+		.exp-card,
+		.plain-card,
+		.project-card {
+			background: var(--panel);
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+		}
+
+		.exp-card {
+			padding: 28px;
+		}
+
+		.card-top {
+			display: flex;
+			justify-content: space-between;
+			gap: 24px;
+			margin-bottom: 20px;
+		}
+
+		.card-top h3,
+		.project-card h3,
+		.plain-card h3 {
+			margin: 0;
+			font-size: 22px;
+			line-height: 1.35;
+			font-weight: 800;
+		}
+
+		.meta {
+			color: var(--muted);
+			font-size: 14px;
+			font-weight: 700;
+		}
+
+		.period {
+			color: var(--muted);
+			font-size: 14px;
 			font-weight: 800;
 			white-space: nowrap;
-			font-size: 14px;
 		}
+
+		.workstream {
+			display: grid;
+			grid-template-columns: 210px minmax(0, 1fr);
+			gap: 28px;
+			padding: 18px 0;
+			border-top: 1px solid var(--line);
+		}
+
+		.workstream-title {
+			font-weight: 800;
+		}
+
+		.workstream small {
+			display: block;
+			margin-top: 4px;
+			color: var(--muted);
+			font-size: 13px;
+			font-weight: 600;
+		}
+
 		.clean-list {
-			margin: 12px 0 0;
-			padding-left: 20px;
-			color: #364152;
+			margin: 0;
+			padding-left: 18px;
+			color: #343434;
 		}
+
 		.clean-list li {
 			margin-bottom: 7px;
-			line-height: 1.7;
 		}
+
 		.project-grid {
+			display: block;
+		}
+
+		.featured-project {
+			display: grid;
+			grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+			gap: 0;
+			margin-bottom: 18px;
+			background: #151515;
+			color: #ffffff;
+			border-color: #151515;
+			box-shadow: 0 22px 60px rgba(20, 20, 20, 0.14);
+			overflow: hidden;
+		}
+
+		.featured-project .project-media {
+			height: 100%;
+			border-right: 1px solid rgba(255, 255, 255, 0.12);
+			border-bottom: 0;
+			border-radius: 0;
+		}
+
+		.featured-project .project-shot {
+			height: 100%;
+			min-height: 460px;
+			aspect-ratio: auto;
+			object-fit: cover;
+			object-position: top center;
+		}
+
+		.featured-project .project-body {
+			padding: 36px;
+		}
+
+		.featured-project .meta,
+		.featured-project .project-body p,
+		.featured-project .clean-list {
+			color: rgba(255, 255, 255, 0.76);
+		}
+
+		.featured-project h3 {
+			color: #ffffff;
+			font-size: 30px;
+		}
+
+		.featured-project .project-link {
+			color: #ffffff;
+		}
+
+		.other-projects {
 			display: grid;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 			gap: 18px;
 		}
-		.project-card {
-			border: 1px solid #e7ebf2;
-			border-radius: 8px;
-			padding: 22px;
-			background: #fbfcff;
+
+		.project-shot {
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			object-fit: contain;
+			object-position: top center;
+			background: #ffffff;
+			border-bottom: 1px solid var(--line);
+			border-radius: var(--radius) var(--radius) 0 0;
 		}
-		.project-card h3 {
-			font-size: 20px;
+
+		.project-media {
+			position: relative;
+			background: #ffffff;
+			border-bottom: 1px solid var(--line);
+			border-radius: var(--radius) var(--radius) 0 0;
+			overflow: hidden;
+		}
+
+		.project-media .project-shot {
+			border-bottom: 0;
+			border-radius: 0;
+		}
+
+		.video-open {
+			position: absolute;
+			right: 14px;
+			bottom: 14px;
+			min-height: 38px;
+			padding: 8px 13px;
+			border: 1px solid rgba(255, 255, 255, 0.64);
+			border-radius: 999px;
+			background: rgba(21, 21, 21, 0.86);
+			color: #ffffff;
+			font: inherit;
+			font-size: 13px;
 			font-weight: 800;
-			color: #111827;
-			margin-bottom: 8px;
+			box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
 		}
-		.project-meta {
-			color: #3e64ff;
+
+		.video-open:hover,
+		.video-open:focus {
+			background: #151515;
+		}
+
+		.project-body {
+			padding: 24px;
+		}
+
+		.project-body p {
+			margin: 10px 0 16px;
+			color: #333333;
+		}
+
+		.project-link {
+			display: inline-flex;
+			margin-top: 8px;
 			font-size: 14px;
 			font-weight: 800;
-			margin-bottom: 12px;
+			text-decoration: underline;
+			text-underline-offset: 4px;
 		}
-		.btn-resume {
-			display: inline-block;
-			background: #3e64ff;
-			color: #ffffff !important;
-			border-radius: 4px;
-			padding: 10px 16px;
-			font-weight: 700;
-			margin-top: 18px;
+
+		.grid-list {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 14px;
 		}
-		.btn-outline-resume {
-			display: inline-block;
-			border: 1px solid #3e64ff;
-			color: #3e64ff !important;
-			border-radius: 4px;
-			padding: 8px 14px;
-			font-weight: 700;
-			margin-top: 12px;
+
+		.plain-card {
+			padding: 22px;
 		}
-		.statement {
-			background: #f8faff;
-			border-left: 4px solid #3e64ff;
-			padding: 18px 20px;
-			margin-bottom: 16px;
-			line-height: 1.8;
-			color: #364152;
+
+		.plain-card p {
+			margin: 8px 0 0;
+			color: var(--muted);
+			font-size: 15px;
+			font-weight: 600;
 		}
-		.navbar-brand {
-			font-weight: 800;
+
+		.footer {
+			padding: 64px 24px 34px;
+			color: var(--muted);
+			text-align: center;
+			font-size: 14px;
+			font-weight: 600;
 		}
-		@media (max-width: 767.98px) {
-			.resume-shell {
-				padding: 92px 14px 40px;
+
+		.video-modal {
+			position: fixed;
+			inset: 0;
+			z-index: 30;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 24px;
+			background: rgba(0, 0, 0, 0.72);
+		}
+
+		.video-modal.is-open {
+			display: flex;
+		}
+
+		.video-dialog {
+			position: relative;
+			width: min(960px, 100%);
+			background: #111111;
+			border-radius: var(--radius);
+			box-shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
+			overflow: hidden;
+		}
+
+		.video-dialog video {
+			width: 100%;
+			max-height: 78vh;
+			display: block;
+			background: #000000;
+		}
+
+		.video-close {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			z-index: 1;
+			width: 38px;
+			height: 38px;
+			border: 1px solid rgba(255, 255, 255, 0.5);
+			border-radius: 999px;
+			background: rgba(0, 0, 0, 0.72);
+			color: #ffffff;
+			font-size: 22px;
+			line-height: 1;
+		}
+
+		@media (max-width: 860px) {
+			.nav {
+				align-items: flex-start;
+				flex-direction: column;
 			}
-			.resume-hero,
-			.resume-section {
-				padding: 22px;
+
+			.nav-links {
+				width: 100%;
+				overflow-x: auto;
+				padding-bottom: 2px;
 			}
-			.resume-name {
-				font-size: 34px;
+
+			.wrap {
+				padding-top: 38px;
 			}
-			.info-grid,
-			.project-grid {
+
+			.hero,
+			.section-head {
+				grid-template-columns: 1fr;
+				gap: 28px;
+			}
+
+			.hero h2 {
+				font-size: 42px;
+			}
+
+			.hero p {
+				font-size: 18px;
+			}
+
+			.profile-card {
+				width: 210px;
+			}
+
+			.quick-facts,
+			.featured-project,
+			.project-grid,
+			.other-projects,
+			.grid-list {
 				grid-template-columns: 1fr;
 			}
-			.item-head {
+
+			.featured-project .project-shot {
+				min-height: auto;
+				aspect-ratio: 4 / 3;
+				object-fit: contain;
+			}
+
+			.workstream {
+				grid-template-columns: 1fr;
+				gap: 10px;
+			}
+
+			.card-top {
 				display: block;
 			}
-			.item-date {
+
+			.period {
 				display: block;
 				margin-top: 6px;
 			}
@@ -226,287 +591,269 @@
 	</style>
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body>
+	<header class="site-header">
+		<nav class="nav" aria-label="주요 메뉴">
+			<a class="brand" href="#top">Shim JaeCheol</a>
+			<div class="nav-links">
+				<a href="#about">소개</a>
+				<a href="#experience">경력</a>
+				<a href="#education">교육/활동</a>
+				<a href="#credentials">자격</a>
+				<a href="#projects">프로젝트</a>
+			</div>
+		</nav>
+	</header>
 
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="#top">Shim JaeCheol</a>
-			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+	<main class="wrap" id="top">
+		<section class="hero" id="about">
+			<div>
+				<div class="kicker">Operations Developer</div>
+				<h2>사용자가 본래 목적에만 집중할 수 있는 시스템을 고민합니다.</h2>
+				<div class="hero-note">
+					운영 환경에서 사용자가 멈칫하는 순간을 줄이고, 반복되는 문의와 지연을 시스템 개선으로 바꾸는 일을 해왔습니다.
+				</div>
+				<div class="stack" aria-label="주요 기술">
+					<span class="tag">C#</span>
+					<span class="tag">Java</span>
+					<span class="tag">JavaScript</span>
+					<span class="tag">HTML/CSS</span>
+					<span class="tag">Markdown</span>
+					<span class="tag">ASP.NET</span>
+					<span class="tag">Spring Boot</span>
+					<span class="tag">MSSQL</span>
+					<span class="tag">Git</span>
+					<span class="tag">Docker</span>
+					<span class="tag">AWS EC2</span>
+				</div>
+				<div class="hero-actions">
+					<a class="button primary" href="resources/이력서_심재철.pdf" target="_blank">이력서 PDF</a>
+					<a class="button secondary" href="https://github.com/wocjf7170" target="_blank">GitHub</a>
+				</div>
+			</div>
+			<aside class="profile-card" aria-label="프로필 사진">
+				<img src="images/심재철.jpg" alt="심재철 프로필 사진">
+			</aside>
+		</section>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav nav ml-auto">
-					<li class="nav-item"><a href="#summary" class="nav-link"><span>Summary</span></a></li>
-					<li class="nav-item"><a href="#skills" class="nav-link"><span>Skills</span></a></li>
-					<li class="nav-item"><a href="#career" class="nav-link"><span>Career</span></a></li>
-					<li class="nav-item"><a href="#education" class="nav-link"><span>Education</span></a></li>
-					<li class="nav-item"><a href="#projects" class="nav-link"><span>Projects</span></a></li>
-				</ul>
+		<div class="quick-facts" aria-label="요약 정보">
+			<div class="fact">
+				<strong>1년 5개월</strong>
+				<span>사내 시스템 운영/개발</span>
+			</div>
+			<div class="fact">
+				<strong>임직원 600명</strong>
+				<span>1000대기업 전산 경험</span>
+			</div>
+			<div class="fact">
+				<strong>85%</strong>
+				<span>MES 실적 조회 성능 개선</span>
+			</div>
+			<div class="fact">
+				<strong>2 / 65</strong>
+				<span>야놀자 백엔드 과정 우수 수료</span>
 			</div>
 		</div>
-	</nav>
 
-	<main class="resume-shell" id="top">
-		<section class="resume-hero" id="summary">
-			<div class="resume-title">경력 1년 7개월 · 운영개발 / IT 운영</div>
-			<h1 class="resume-name">심재철</h1>
-			<p class="resume-summary">
-				C#(.NET) 기반 운영개발과 MSSQL 데이터 조회 성능 개선 경험을 가진 운영자입니다. 사용자가 시스템을 더 쾌적하게 사용할 수 있도록 문제를 발견하고, 화면과 데이터 흐름을 함께 확인하며 개선하는 과정에서 보람을 느낍니다.
-			</p>
-			<div class="info-grid">
-				<div class="info-item"><span class="info-label">이메일</span><span class="info-value">wocjf7170@gmail.com</span></div>
-				<div class="info-item"><span class="info-label">주소</span><span class="info-value">서울 송파구 송파동</span></div>
-				<div class="info-item"><span class="info-label">포트폴리오</span><span class="info-value"><a href="https://wocjf7170.github.io" target="_blank">wocjf7170.github.io</a></span></div>
-				<div class="info-item"><span class="info-label">GitHub</span><span class="info-value"><a href="https://github.com/wocjf7170" target="_blank">github.com/wocjf7170</a></span></div>
-				<div class="info-item"><span class="info-label">Blog</span><span class="info-value"><a href="https://mungjaesoon.tistory.com" target="_blank">mungjaesoon.tistory.com</a></span></div>
-				<div class="info-item"><span class="info-label">학력</span><span class="info-value">아주대학교 소프트웨어학과 졸업</span></div>
+		<section class="section" id="experience">
+			<div class="section-head">
+				<p class="section-label">Experience</p>
 			</div>
-			<a class="btn-resume" href="resources/이력서_심재철.pdf" target="_blank">이력서 PDF 보기</a>
-		</section>
-
-		<section class="resume-section">
-			<h2 class="section-title">간략 소개</h2>
-			<ol class="clean-list">
-				<li>C#(.NET) 기반 MES 운영개발</li>
-				<li>MSSQL 대용량 데이터 조회 성능 개선</li>
-				<li>Java(Spring Boot) 기반 야놀자 백엔드 개발 과정 2등 수료</li>
-				<li>1000대 기업 IT 인프라 운영</li>
-			</ol>
-		</section>
-
-		<section class="resume-section" id="skills">
-			<h2 class="section-title">나의 스킬</h2>
-			<ul class="badge-list">
-				<li>C#</li>
-				<li>Java</li>
-				<li>HTML/CSS</li>
-				<li>ASP.NET</li>
-				<li>.NET</li>
-				<li>Spring Boot</li>
-				<li>MSSQL</li>
-				<li>SQL</li>
-				<li>Git</li>
-				<li>Docker</li>
-				<li>GitHub</li>
-				<li>CI/CD</li>
-				<li>Microsoft Excel</li>
-				<li>Microsoft PowerPoint</li>
-				<li>Microsoft Word</li>
-				<li>Microsoft Teams</li>
-				<li>Microsoft Outlook</li>
-			</ul>
-		</section>
-
-		<section class="resume-section" id="career">
-			<h2 class="section-title">경력</h2>
-			<div class="timeline-item">
-				<div class="item-head">
-					<div>
-						<h3 class="item-title">운영개발 · 주임</h3>
-						<div class="item-subtitle">㈜이젬코</div>
+			<div class="timeline">
+				<article class="exp-card">
+					<div class="card-top">
+						<div>
+							<h3>㈜이젬코 · 운영개발 주임</h3>
+							<div class="meta">MES 운영개발</div>
+						</div>
+						<div class="period">2026.02 - 2026.03</div>
 					</div>
-					<div class="item-date">2026.02 ~ 2026.03 · 2개월</div>
-				</div>
-				<ul class="clean-list">
-					<li>MES 운영개발 (C#, .NET, WinForm, MSSQL)</li>
-					<li>BOM 전개 쿼리 성능 97% 개선, CTE 내 CROSS APPLY + TOP 1 방식으로 최신일자 BOM 조회 구조 개선</li>
-					<li>작업지시서 등 엑셀 추출 기능 개발</li>
-					<li>사용자 문의 대응 및 장애 처리</li>
-				</ul>
-			</div>
-
-			<div class="timeline-item">
-				<div class="item-head">
-					<div>
-						<h3 class="item-title">IT · 사원</h3>
-						<div class="item-subtitle">한솔섬유㈜</div>
+					<div class="workstream">
+						<div class="workstream-title">MES 운영개발<small>C#, WinForm, .NET, MSSQL</small></div>
+						<ul class="clean-list">
+							<li>최신 BOM 조회 로직을 CTE 내 CROSS APPLY + TOP 1 구조로 개선해 BOM 전개 쿼리 성능 97% 개선</li>
+							<li>반복적으로 수기 처리하던 작업지시서 데이터를 엑셀로 추출할 수 있도록 기능 개발</li>
+						</ul>
 					</div>
-					<div class="item-date">2024.05 ~ 2025.07 · 1년 3개월</div>
-				</div>
-				<ul class="clean-list">
-					<li>MES, HRS 운영개발 (C#, ASP.NET, cshtml, MSSQL)</li>
-					<li>봉제 공정 실적 조회 성능 85% 개선, 보조 인덱스 추가를 통해 Key Lookup 비용 감소</li>
-					<li>Rack Map 페이지 개발 등 업무 프로세스 전산화</li>
-					<li>주민등록번호, 계좌번호 등 민감정보 AES-128 암호화 적용</li>
-					<li>OA 기기 관리 및 IT 헬프데스크 운영</li>
-					<li>Windows 11 전사 업그레이드 수행: 일정 관리, 대상 장비 분류, 사용자 안내 포함</li>
-					<li>보안 점검 및 IT 비용 관리</li>
-				</ul>
-			</div>
-
-			<div class="timeline-item">
-				<div class="item-head">
-					<div>
-						<h3 class="item-title">개발 · 인턴/수습</h3>
-						<div class="item-subtitle">솔리드아이티</div>
+					<div class="workstream">
+						<div class="workstream-title">운영 대응<small>사용자 문의 및 장애 처리</small></div>
+						<ul class="clean-list">
+							<li>MES 관련 사용자 문의 응대</li>
+							<li>장애 상황 확인 및 데이터 흐름 기반 원인 분석</li>
+						</ul>
 					</div>
-					<div class="item-date">2021.07 ~ 2021.08 · 2개월</div>
-				</div>
-				<ul class="clean-list">
-					<li>자사 라이선스 발급 웹 풀스택 개발 (Java, Spring Boot, JSP, MariaDB, AWS EC2)</li>
-					<li>AWS EC2 기반 서비스 배포 및 운영 환경 구축</li>
-					<li>관리자 페이지 개발</li>
-					<li>라이선스 사용 및 발급량 차트 페이지 개발</li>
-				</ul>
+				</article>
+
+				<article class="exp-card">
+					<div class="card-top">
+						<div>
+							<h3>한솔섬유㈜ · IT 사원</h3>
+							<div class="meta">전산 운영</div>
+						</div>
+						<div class="period">2024.05 - 2025.07</div>
+					</div>
+					<div class="workstream">
+						<div class="workstream-title">사내 MES,인사 시스템 운영개발<small>C#, ASP.NET, cshtml, JavaScript, MSSQL</small></div>
+						<ul class="clean-list">
+							<li>공정 실적 조회 지연 원인을 실행 계획에서 확인하고, 보조 인덱스 추가로 Key Lookup 비용 감소</li>
+							<li>Rack Map 페이지를 개발해 현장 자산 위치와 상태 확인 업무를 전산화</li>
+							<li>주민등록번호, 계좌번호 등 민감정보를 AES-128로 암호화해 개인정보 보안 수준 개선</li>
+						</ul>
+					</div>
+					<div class="workstream">
+						<div class="workstream-title">IT 운영<small>자산, 헬프데스크, 보안/비용 관리</small></div>
+						<ul class="clean-list">
+							<li>PC/OA 유지보수 및 IT 자산 관리</li>
+							<li>전산 시스템 및 O365 문의 대응</li>
+							<li>보안 점검 및 IT 비용 관리</li>
+						</ul>
+					</div>
+				</article>
 			</div>
 		</section>
 
-		<section class="resume-section" id="education">
-			<h2 class="section-title">학력</h2>
-			<div class="timeline-item">
-				<div class="item-head">
-					<div>
-						<h3 class="item-title">아주대학교 소프트웨어학과 전공심화</h3>
-						<div class="item-subtitle">대학교(4년제) 졸업 · 학점 3.78/4.5</div>
-					</div>
-					<div class="item-date">2016.03 ~ 2023.02</div>
-				</div>
-				<ul class="clean-list">
-					<li>지역: 경기</li>
-					<li>주/야간: 주간</li>
-					<li>교내 성적 장학금 수혜: 원천, 다산 장학</li>
-				</ul>
+		<section class="section" id="education">
+			<div class="section-head">
+				<p class="section-label">Education</p>
+			</div>
+			<div class="grid-list">
+				<article class="plain-card">
+					<h3>아주대학교 소프트웨어학과</h3>
+					<p>2016.03 - 2023.02 · 전공심화 졸업 · 학점 3.78 / 4.5</p>
+				</article>
+				<article class="plain-card">
+					<h3>야놀자 백엔드 개발 과정</h3>
+					<p>2023.07 - 2024.01 · Java/Spring Boot 백엔드 과정 우수 수료 · 2 / 65</p>
+				</article>
 			</div>
 		</section>
 
-		<section class="resume-section">
-			<h2 class="section-title">경험 / 활동 / 교육</h2>
-			<div class="timeline-item">
-				<div class="item-head">
-					<div>
-						<h3 class="item-title">야놀자 백엔드 개발 과정</h3>
-						<div class="item-subtitle">Spring Boot 기반 백엔드 개발 과정 최우수 수료 (2/65, 1096시간)</div>
-					</div>
-					<div class="item-date">2023.07 ~ 2024.01</div>
-				</div>
-				<ul class="clean-list">
-					<li>Spring Security(JWT)를 이용한 인증·인가 구현</li>
-					<li>REST Docs로 API 문서화</li>
-					<li>JUnit·Mockito를 이용한 단위/통합 테스트 수행</li>
-					<li>GitHub Actions 기반 CI/CD 파이프라인 구축</li>
-				</ul>
+		<section class="section" id="credentials">
+			<div class="section-head">
+				<p class="section-label">Credentials</p>
 			</div>
-
-			<div class="timeline-item">
-				<div class="item-head">
-					<div>
-						<h3 class="item-title">아주대학교 / 코딩트레이너</h3>
-						<div class="item-subtitle">교내 Java 수업 실습 및 교외 Java 멘토링</div>
-					</div>
-					<div class="item-date">2022.09 ~ 2022.12</div>
-				</div>
-				<ul class="clean-list">
-					<li>오픈채팅을 활용한 실명 신청 절차 개선</li>
-					<li>매주 3명 이상의 멘티 확보</li>
-				</ul>
-			</div>
-
-			<div class="timeline-item">
-				<div class="item-head">
-					<div>
-						<h3 class="item-title">성남시 / 청년운영위원회</h3>
-						<div class="item-subtitle">성남시 청년 대상 프로그램 기획·운영</div>
-					</div>
-					<div class="item-date">2023.02 ~ 2024.01</div>
-				</div>
-				<ul class="clean-list">
-					<li>1인 가구 대상 고민 나눔 프로그램 운영</li>
-					<li>청년운영위원회 홍보 부스 운영</li>
-				</ul>
+			<div class="grid-list">
+				<article class="plain-card">
+					<h3>SQL개발자(SQLD)</h3>
+					<p>2025.09 · 한국데이터베이스진흥센터</p>
+				</article>
+				<article class="plain-card">
+					<h3>TOEIC Speaking Test</h3>
+					<p>2025.09 · 130점 / Intermediate Mid3</p>
+				</article>
+				<article class="plain-card">
+					<h3>TOPCIT 3수준</h3>
+					<p>2022.10 · 480점 · 정보통신기획평가원</p>
+				</article>
+				<article class="plain-card">
+					<h3>1종보통운전면허</h3>
+					<p>2026.06 · 경찰청 운전면허시험관리단</p>
+				</article>
 			</div>
 		</section>
 
-		<section class="resume-section">
-			<h2 class="section-title">자격 / 어학 / 수상</h2>
-			<div class="info-grid">
-				<div class="info-item"><span class="info-label">2025.09</span><span class="info-value">SQL개발자(SQLD자격) 최종합격</span></div>
-				<div class="info-item"><span class="info-label">2025.09</span><span class="info-value">TOEIC Speaking Test 130점 / Intermediate Mid3</span></div>
-				<div class="info-item"><span class="info-label">2022.10</span><span class="info-value">TOPCIT 3수준, 480점</span></div>
-				<div class="info-item"><span class="info-label">2022.06</span><span class="info-value">교내 성적 장학금 수혜 (원천, 다산 장학)</span></div>
+		<section class="section" id="projects">
+			<div class="section-head">
+				<p class="section-label">Projects</p>
 			</div>
-		</section>
-
-		<section class="resume-section">
-			<h2 class="section-title">취업 우대 사항</h2>
-			<div class="info-grid">
-				<div class="info-item"><span class="info-label">병역</span><span class="info-value">군필</span></div>
-				<div class="info-item"><span class="info-label">복무</span><span class="info-value">육군 / 병장 / 만기전역</span></div>
-				<div class="info-item"><span class="info-label">기간</span><span class="info-value">2017.10 ~ 2019.07</span></div>
-			</div>
-		</section>
-
-		<section class="resume-section">
-			<h2 class="section-title">자기소개서</h2>
-			<div class="statement">
-				<strong>직무 상의 동기</strong><br>
-				저는 시스템을 사용자가 더 쾌적하게 사용할 수 있도록 개선하는 과정에서 보람을 느낍니다. 조회 지연이나 불편한 절차가 단순한 기술 문제가 아니라 업무 흐름에 영향을 줄 수 있는 문제라고 보고, 실제 사용 상황과 데이터 흐름을 함께 확인하며 개선합니다.
-			</div>
-			<div class="statement">
-				<strong>직무 상의 강점</strong><br>
-				문제를 마주했을 때 먼저 스스로 확인하고 해결 방향을 찾아가는 자기주도성이 강점입니다. 화면, 소스, 프로시저를 순서대로 분석하고 필요한 정보를 정리한 뒤 담당자와 검토하며 운영 품질을 높입니다.
-			</div>
-			<div class="statement">
-				<strong>성격 상의 장점과 개선 노력</strong><br>
-				상대방의 입장에서 문제를 바라보고 해결하려는 태도를 가지고 있습니다. 질문이 필요한 상황에서는 관련 자료를 먼저 확인하고, 파악한 내용과 막힌 지점을 정리해 효율적으로 소통하려고 합니다.
-			</div>
-		</section>
-
-		<section class="resume-section" id="projects">
-			<h2 class="section-title">프로젝트</h2>
 			<div class="project-grid">
-				<div class="project-card">
-					<div class="project-meta">2023.12 ~ 2024.01 · 야놀자 백엔드 개발 부트캠프 파이널 프로젝트</div>
-					<h3>숙소 양도 웹/앱 서비스 (SCBJ)</h3>
-					<ul class="clean-list">
-						<li>역할: 백엔드 API 개발, CI/CD 파이프라인 구축, 인프라 구성</li>
-						<li>기술: Spring Boot, MySQL, Redis, Docker, GitHub Actions, AWS</li>
-						<li>결과: Spring Security + JWT 인증/인가, REST Docs 문서화, JUnit/Mockito 테스트, Caddy2 SSL 적용</li>
-					</ul>
-					<a class="btn-outline-resume" href="https://github.com/wocjf7170/scbj-accommodation-transfer-webapp" target="_blank">GitHub Code</a>
-				</div>
+				<article class="project-card featured-project">
+					<div class="project-media">
+						<img class="project-shot" src="images/숙박양도웹앱.png" alt="숙박 양도 플랫폼 화면">
+						<button class="video-open" type="button" data-video-open>영상 보기</button>
+					</div>
+					<div class="project-body">
+						<div class="meta">2023.12 - 2024.01 · 15인 팀 프로젝트</div>
+						<h3>숙박 양도 웹앱</h3>
+						<p>취소·환불이 불가능한 숙박 예약 건을 사용자 간 양도할 수 있도록 돕는 웹 플랫폼입니다.</p>
+						<ul class="clean-list">
+							<li>문제: 숙박권 양도가 비공식 커뮤니티 중심으로 이루어져 신뢰성과 편의성이 낮음</li>
+							<li>역할: 인증/인가, 실시간 알림, REST API, 문서화, CI/CD 담당</li>
+							<li>해결: JWT 인증, FCM 알림, REST Docs, GitHub Actions 기반 배포 구성</li>
+							<li>결과: 15인 팀 프로젝트, 12개 팀 중 2등</li>
+						</ul>
+						<a class="project-link" href="https://github.com/wocjf7170/scbj-accommodation-transfer-webapp" target="_blank">GitHub Code</a>
+					</div>
+				</article>
 
-				<div class="project-card">
-					<div class="project-meta">2021.07 ~ 2021.08 · 솔리드아이티 개발 인턴 프로젝트</div>
-					<h3>3D 설계 프로그램 라이선스 발급 시스템</h3>
-					<ul class="clean-list">
-						<li>역할: 웹 개발 풀스택</li>
-						<li>기술: Java, Spring Boot, JSP, MariaDB, AWS EC2, Git</li>
-						<li>결과: 수기 관리 프로세스 전산화, 라이선스 사용/발급량 차트 기반 지표 제공</li>
-					</ul>
-					<a class="btn-outline-resume" href="https://github.com/wocjf7170/springboot-web-for-reseller" target="_blank">GitHub Code</a>
+				<div class="other-projects">
+					<article class="project-card">
+						<img class="project-shot" src="images/라이선스발급웹.png" alt="라이선스 발급 관리 플랫폼 화면">
+						<div class="project-body">
+							<div class="meta">2021.07 - 2021.08 · 웹 개발 인턴 프로젝트</div>
+							<h3>라이선스 발급 관리 플랫폼</h3>
+							<p>3D 설계 툴 라이선스 신청, 발급, 사용 현황 관리를 지원하는 웹 플랫폼입니다.</p>
+							<ul class="clean-list">
+								<li>문제: 라이선스 발급/사용량 관리가 수기 중심이라 현황 파악이 비효율적</li>
+								<li>역할: 신청/관리 화면, 관리자 페이지, 사용량 지표 풀스택 개발</li>
+								<li>해결: 발급 이력, 사용량 차트, 관리자 기능을 웹으로 전산화</li>
+								<li>결과: AWS EC2 운영 환경 구축 및 라이선스 관리 업무 웹 기반 전환</li>
+							</ul>
+							<a class="project-link" href="https://github.com/wocjf7170/springboot-web-for-reseller" target="_blank">GitHub Code</a>
+						</div>
+					</article>
+
+					<article class="project-card">
+						<div class="project-body">
+							<div class="meta">한솔섬유㈜ · 전사 보안 환경 개선</div>
+							<h3>Windows 11 전사 업그레이드</h3>
+							<p>Windows 10 보안 지원 종료에 대비해 약 700대 규모의 전사 PC를 Windows 11 환경으로 전환한 프로젝트입니다.</p>
+							<ul class="clean-list">
+								<li>문제: Windows 10 보안 지원 종료로 약 700대 전사 PC 전환 필요</li>
+								<li>역할: 업그레이드 가능/불가능 PC 분류 및 교체 일정 관리</li>
+								<li>해결: 사용자 매뉴얼 배포, 부서별 일정 조율, 교체 대상 PC 발주</li>
+								<li>결과: 전사 PC Windows 11 업그레이드 수행</li>
+							</ul>
+						</div>
+					</article>
 				</div>
 			</div>
 		</section>
-
 	</main>
 
-	<footer class="ftco-footer ftco-section">
-		<div class="container text-center">
-			<p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Shim JaeCheol. All rights reserved.</p>
+	<div class="video-modal" data-video-modal aria-hidden="true">
+		<div class="video-dialog" role="dialog" aria-modal="true" aria-label="숙박 양도 웹앱 영상">
+			<button class="video-close" type="button" data-video-close aria-label="영상 닫기">×</button>
+			<video data-project-video src="video/숙박양도웹앱.mp4" controls playsinline preload="metadata"></video>
 		</div>
+	</div>
+
+	<footer class="footer">
+		<p>© <script>document.write(new Date().getFullYear());</script> Shim JaeCheol · wocjf7170@gmail.com</p>
 	</footer>
+	<script>
+		const videoModal = document.querySelector("[data-video-modal]");
+		const projectVideo = document.querySelector("[data-project-video]");
+		const openVideoButton = document.querySelector("[data-video-open]");
+		const closeVideoButton = document.querySelector("[data-video-close]");
 
-	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-				stroke="#F96D00" />
-		</svg></div>
+		function openVideoModal() {
+			videoModal.classList.add("is-open");
+			videoModal.setAttribute("aria-hidden", "false");
+			projectVideo.currentTime = 0;
+			projectVideo.play();
+		}
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/aos.js"></script>
-	<script src="js/jquery.animateNumber.min.js"></script>
-	<script src="js/scrollax.min.js"></script>
-	<script src="js/main.js"></script>
+		function closeVideoModal() {
+			videoModal.classList.remove("is-open");
+			videoModal.setAttribute("aria-hidden", "true");
+			projectVideo.pause();
+			projectVideo.currentTime = 0;
+		}
 
+		openVideoButton.addEventListener("click", openVideoModal);
+		closeVideoButton.addEventListener("click", closeVideoModal);
+		videoModal.addEventListener("click", (event) => {
+			if (event.target === videoModal) {
+				closeVideoModal();
+			}
+		});
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && videoModal.classList.contains("is-open")) {
+				closeVideoModal();
+			}
+		});
+	</script>
 </body>
+
 </html>
