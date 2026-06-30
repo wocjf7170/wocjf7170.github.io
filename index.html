@@ -483,6 +483,130 @@
 			font-weight: 600;
 		}
 
+		/* ===== window close / traffic lights ===== */
+		.app {
+			transition: opacity 0.26s ease, transform 0.26s ease;
+			transform-origin: 50% 42%;
+		}
+
+		body.closed { overflow: hidden; height: 100vh; }
+		body.closed .app { opacity: 0; transform: scale(0.955); pointer-events: none; }
+
+		.dot {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0;
+			border: 0;
+		}
+		button.dot { cursor: pointer; }
+		.dot::after {
+			content: "";
+			font-size: 10px;
+			font-weight: 800;
+			line-height: 1;
+			color: rgba(0, 0, 0, 0.55);
+			opacity: 0;
+			transition: opacity 0.12s ease;
+		}
+		.dots:hover .dot::after { opacity: 1; }
+		.dot.r::after { content: "\00d7"; }
+		.dot.y::after { content: "\2013"; }
+		.dot.g::after { content: "+"; }
+
+		/* ===== desktop (closed state) ===== */
+		.desktop {
+			position: fixed;
+			inset: 0;
+			z-index: 40;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s ease, visibility 0.3s ease;
+			background: radial-gradient(125% 125% at 50% 0%, #1d2530 0%, #12161c 48%, #0a0c10 100%);
+			color: #fff;
+			user-select: none;
+		}
+		body.closed .desktop { opacity: 1; visibility: visible; }
+
+		.menubar {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0 16px;
+			font-size: 12.5px;
+			font-weight: 600;
+			color: rgba(255, 255, 255, 0.92);
+			background: rgba(18, 18, 18, 0.45);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+		}
+		.menubar .left { display: flex; align-items: center; gap: 18px; }
+		.menubar .brand { font-weight: 800; }
+		.menubar .muted { color: rgba(255, 255, 255, 0.6); font-weight: 600; }
+		.menubar .clock { font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, 0.85); }
+
+		.desk-icons {
+			position: absolute;
+			top: 58px;
+			right: 26px;
+			display: flex;
+			flex-direction: column;
+			gap: 18px;
+		}
+		.desk-ic {
+			width: 96px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+			padding: 6px 4px;
+			background: transparent;
+			border: 0;
+			border-radius: 10px;
+			cursor: pointer;
+			font: inherit;
+			color: #fff;
+		}
+		.desk-ic .glyph {
+			width: 58px;
+			height: 58px;
+			filter: drop-shadow(0 6px 13px rgba(0, 0, 0, 0.5));
+			transition: transform 0.16s ease;
+		}
+		.desk-ic .name {
+			max-width: 100%;
+			font-size: 12.5px;
+			font-weight: 600;
+			line-height: 1.3;
+			text-align: center;
+			padding: 1px 7px;
+			border-radius: 6px;
+			text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+		}
+		.desk-ic:hover .glyph { transform: translateY(-2px) scale(1.05); }
+		.desk-ic:hover .name { background: rgba(255, 255, 255, 0.16); }
+		.desk-ic:focus-visible { outline: none; }
+		.desk-ic:focus-visible .name { background: var(--accent); text-shadow: none; }
+
+		.desk-hint {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 38px;
+			margin: 0;
+			text-align: center;
+			font-size: 13px;
+			font-weight: 600;
+			color: rgba(255, 255, 255, 0.5);
+			pointer-events: none;
+		}
+
 		@media (max-width: 860px) {
 			.app { padding: 24px 16px 16px; }
 			.page-head { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -496,11 +620,14 @@
 			.panel h2 { font-size: 25px; }
 			.star > div { grid-template-columns: 76px minmax(0, 1fr); }
 			.brief-item { flex-direction: column; gap: 4px; }
+			.desk-icons { top: 50px; right: 16px; gap: 14px; }
+			.desk-ic { width: 84px; }
+			.desk-ic .glyph { width: 52px; height: 52px; }
 		}
 	</style>
 </head>
 
-<body>
+<body class="closed">
 	<!-- icon sprite -->
 	<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 		<symbol id="ic-chevron" viewBox="0 0 24 24">
@@ -514,6 +641,62 @@
 			<path d="M13 3.5V8h4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
 		</symbol>
 	</svg>
+
+	<!-- ===== desktop (shown when the window is closed) ===== -->
+	<div class="desktop" id="desktop" aria-hidden="false">
+		<div class="menubar">
+			<div class="left">
+				<span class="brand">Finder</span>
+				<span class="muted">파일</span>
+				<span class="muted">편집</span>
+				<span class="muted">보기</span>
+			</div>
+			<div class="clock" id="deskClock"></div>
+		</div>
+
+		<div class="desk-icons">
+			<button class="desk-ic" type="button" data-open="finder">
+				<svg class="glyph" viewBox="0 0 64 64" aria-hidden="true">
+					<defs>
+						<linearGradient id="finL" x1="0" y1="0" x2="0" y2="1">
+							<stop offset="0" stop-color="#7ad3ff" />
+							<stop offset="1" stop-color="#36a3f7" />
+						</linearGradient>
+						<linearGradient id="finR" x1="0" y1="0" x2="0" y2="1">
+							<stop offset="0" stop-color="#3aa0f6" />
+							<stop offset="1" stop-color="#1668d6" />
+						</linearGradient>
+					</defs>
+					<rect x="2" y="2" width="60" height="60" rx="14" fill="url(#finR)" />
+					<path d="M32 2 H16 A14 14 0 0 0 2 16 V48 A14 14 0 0 0 16 62 H32 Z" fill="url(#finL)" />
+					<line x1="25" y1="21" x2="25" y2="31" stroke="#0b2c58" stroke-width="3" stroke-linecap="round" />
+					<line x1="39" y1="21" x2="39" y2="31" stroke="#0b2c58" stroke-width="3" stroke-linecap="round" />
+					<path d="M20 40 Q32 50 44 40" fill="none" stroke="#0b2c58" stroke-width="3" stroke-linecap="round" />
+				</svg>
+				<span class="name">Finder</span>
+			</button>
+
+			<button class="desk-ic" type="button" data-open="resume">
+				<svg class="glyph" viewBox="0 0 64 64" aria-hidden="true">
+					<path d="M14 5 H40 L52 17 V57 A2 2 0 0 1 50 59 H16 A2 2 0 0 1 14 57 Z" fill="#ffffff" stroke="#d3d7dc" stroke-width="1.4" />
+					<path d="M40 5 V15 A2 2 0 0 0 42 17 H52 Z" fill="#e7eaee" />
+					<rect x="9" y="35" width="46" height="17" rx="3" fill="#e2433b" />
+					<text x="32" y="47.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#ffffff">PDF</text>
+				</svg>
+				<span class="name">이력서.pdf</span>
+			</button>
+
+			<button class="desk-ic" type="button" data-open="github">
+				<svg class="glyph" viewBox="0 0 64 64" aria-hidden="true">
+					<rect x="2" y="2" width="60" height="60" rx="14" fill="#1b1f24" />
+					<path transform="translate(14,14) scale(1.5)" fill="#ffffff" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+				</svg>
+				<span class="name">GitHub</span>
+			</button>
+		</div>
+
+		<p class="desk-hint">아이콘을 클릭해 포트폴리오를 여세요</p>
+	</div>
 
 	<div class="app">
 		<div class="page-head">
@@ -529,7 +712,7 @@
 
 		<div class="explorer">
 			<div class="titlebar">
-				<div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+				<div class="dots"><button class="dot r" type="button" data-close title="닫기" aria-label="창 닫기"></button><span class="dot y"></span><span class="dot g"></span></div>
 				<span class="path">📁 심재철-포트폴리오 — 전산 운영개발</span>
 			</div>
 
@@ -1067,6 +1250,49 @@
 		document.addEventListener("keydown", (e) => {
 			if (e.key === "Escape" && videoModal.classList.contains("is-open")) closeVideoModal();
 		});
+
+		// ===== window close / desktop =====
+		const body = document.body;
+		const desktop = document.getElementById("desktop");
+		const closeBtn = document.querySelector("[data-close]");
+		const resumeUrl = "resources/resume-shim-jaecheol.pdf";
+		const githubUrl = "https://github.com/wocjf7170";
+
+		function closeWindow() {
+			body.classList.add("closed");
+			desktop.setAttribute("aria-hidden", "false");
+		}
+		function openWindow() {
+			body.classList.remove("closed");
+			desktop.setAttribute("aria-hidden", "true");
+		}
+
+		if (closeBtn) closeBtn.addEventListener("click", closeWindow);
+
+		document.querySelectorAll("[data-open]").forEach((icon) => {
+			icon.addEventListener("click", () => {
+				const what = icon.dataset.open;
+				if (what === "finder") openWindow();
+				else if (what === "resume") window.open(resumeUrl, "_blank", "noopener");
+				else if (what === "github") window.open(githubUrl, "_blank", "noopener");
+			});
+		});
+
+		// menubar clock
+		const deskClock = document.getElementById("deskClock");
+		const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
+		function tickClock() {
+			if (!deskClock) return;
+			const d = new Date();
+			let h = d.getHours();
+			const ampm = h < 12 ? "오전" : "오후";
+			h = h % 12;
+			if (h === 0) h = 12;
+			const m = String(d.getMinutes()).padStart(2, "0");
+			deskClock.textContent = `${d.getMonth() + 1}월 ${d.getDate()}일 (${dayNames[d.getDay()]}) ${ampm} ${h}:${m}`;
+		}
+		tickClock();
+		setInterval(tickClock, 20000);
 	</script>
 </body>
 
