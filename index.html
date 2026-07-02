@@ -383,6 +383,39 @@
 		.brief-item .d { margin-top: 3px; color: var(--muted); font-size: 13.5px; font-weight: 600; }
 		.brief-item .when { color: var(--muted); font-size: 13px; font-weight: 800; white-space: nowrap; }
 
+		/* career detail */
+		.career-item {
+			padding: 18px 20px;
+			background: var(--panel);
+			border: 1px solid var(--line);
+			border-radius: 10px;
+		}
+		.career-head {
+			display: flex;
+			justify-content: space-between;
+			gap: 20px;
+			align-items: baseline;
+		}
+		.career-head .t { font-weight: 800; font-size: 15.5px; color: var(--heading); }
+		.career-head .when { color: var(--muted); font-size: 13px; font-weight: 800; white-space: nowrap; }
+		.career-cat {
+			display: inline-block;
+			margin-left: 8px;
+			padding: 2px 9px;
+			background: var(--soft);
+			border: 1px solid var(--line);
+			border-radius: 999px;
+			color: var(--muted);
+			font-size: 11.5px;
+			font-weight: 700;
+			vertical-align: middle;
+		}
+		.career-item .role-line { margin-top: 4px; color: var(--muted); font-size: 13.5px; font-weight: 600; }
+		.career-tasks { margin: 14px 0 0; padding-left: 18px; color: #c4c4c4; }
+		.career-tasks li { margin-bottom: 7px; font-size: 14px; line-height: 1.6; }
+		.career-tasks li strong { color: var(--heading); font-weight: 700; }
+		.career-tasks li .sub { color: var(--muted); font-weight: 600; }
+
 		/* projects */
 		.project-media {
 			position: relative;
@@ -1041,15 +1074,30 @@
 					<p class="eyebrow">Career</p>
 					<h2>경력</h2>
 					<div class="brief">
-						<div class="brief-item">
-							<div><div class="t">㈜이젬코 · 운영개발 주임</div><div class="d">MES 운영개발 (C#, WinForm, .NET, MSSQL)</div></div>
-							<div class="when">2026.02 – 2026.03</div>
+						<div class="career-item">
+							<div class="career-head">
+								<div class="t">㈜이젬코 · 운영개발 주임 <span class="career-cat">유지보수</span></div>
+								<div class="when">2026.02 – 2026.03</div>
+							</div>
+							<ul class="career-tasks">
+								<li>MES 운영개발 <span class="sub">· C#, WinForm, .NET, MSSQL</span></li>
+								<li>사용자 문의 응대 <span class="sub">· MES 관련</span></li>
+							</ul>
 						</div>
-						<div class="brief-item">
-							<div><div class="t">한솔섬유㈜ · IT 사원</div><div class="d">사내 MES·인사 시스템 운영개발 및 전산 운영</div></div>
-							<div class="when">2024.05 – 2025.07</div>
+						<div class="career-item">
+							<div class="career-head">
+								<div class="t">한솔섬유㈜ · IT 사원 <span class="career-cat">유지보수</span></div>
+								<div class="when">2024.05 – 2025.07</div>
+							</div>
+							<ul class="career-tasks">
+								<li>사내 MES · HR 운영개발 <span class="sub">· C#, ASP.NET, cshtml, JavaScript, MSSQL</span></li>
+								<li>PC / OA 유지보수 및 자산 관리</li>
+								<li>IT 헬프데스크 <span class="sub">· 전산 시스템 및 O365 문의 응대</span></li>
+								<li>보안 점검 및 IT 비용 관리</li>
+							</ul>
 						</div>
 					</div>
+					<p style="margin-top:16px;color:var(--muted);font-weight:600;">각 업무의 상세 배경과 결과는 좌측 <strong style="color:var(--ink);">핵심역량</strong> 폴더에서 확인할 수 있습니다.</p>
 				</article>
 
 				<!-- 자격증 -->
