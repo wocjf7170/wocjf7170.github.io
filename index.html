@@ -507,6 +507,92 @@
 			cursor: pointer;
 		}
 
+		/* game modal */
+		.game-modal {
+			position: fixed;
+			inset: 0;
+			z-index: 50;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 24px;
+			background: rgba(0, 0, 0, 0.72);
+		}
+		.game-modal.is-open { display: flex; }
+		.game-dialog {
+			width: min(920px, 96vw);
+			background: var(--panel);
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+			overflow: hidden;
+		}
+		.game-titlebar {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+			padding: 10px 14px;
+			background: var(--titlebar);
+			border-bottom: 1px solid var(--line);
+		}
+		.game-titlebar .title {
+			font-size: 13px;
+			font-weight: 700;
+			color: var(--muted);
+			letter-spacing: 0.01em;
+		}
+		#leanCanvas {
+			display: block;
+			width: 100%;
+			height: auto;
+			background: #cfd6c1;
+			image-rendering: pixelated;
+			touch-action: none;
+		}
+		.game-stage { position: relative; }
+		.game-nameform {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: rgba(18, 18, 16, 0.55);
+		}
+		.game-nameform[hidden] { display: none; }
+		.nf-box {
+			width: min(360px, 86%);
+			padding: 22px 24px;
+			background: #1d1d1b;
+			border: 1px solid rgba(244, 240, 226, 0.25);
+			text-align: center;
+			font-family: Menlo, Consolas, "Courier New", monospace;
+		}
+		.nf-title { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: #f4f0e2; }
+		.nf-sub { margin: 0 0 14px; font-size: 12px; color: rgba(244, 240, 226, 0.6); }
+		.nf-box input {
+			width: 100%;
+			padding: 9px 10px;
+			margin-bottom: 12px;
+			background: #12120f;
+			border: 1px solid rgba(244, 240, 226, 0.3);
+			color: #f4f0e2;
+			font: 700 14px Menlo, Consolas, "Courier New", monospace;
+			text-align: center;
+			outline: none;
+			box-sizing: border-box;
+		}
+		.nf-box input:focus { border-color: #b3872b; }
+		.nf-actions { display: flex; gap: 8px; justify-content: center; }
+		.nf-actions button {
+			padding: 8px 14px;
+			border: 1px solid rgba(244, 240, 226, 0.3);
+			background: #b3872b;
+			color: #12120f;
+			font: 700 13px Menlo, Consolas, "Courier New", monospace;
+			cursor: pointer;
+		}
+		#leanNameSkip { background: transparent; color: rgba(244, 240, 226, 0.65); }
+
 		.footer {
 			padding: 30px 6px 10px;
 			color: var(--muted);
@@ -621,6 +707,7 @@
 			border-radius: 6px;
 			text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 		}
+		.desk-ic img.glyph { object-fit: contain; }
 		.desk-ic:hover .glyph { transform: translateY(-2px) scale(1.05); }
 		.desk-ic:hover .name { background: rgba(255, 255, 255, 0.16); }
 		.desk-ic:focus-visible { outline: none; }
@@ -724,6 +811,11 @@
 					<path transform="translate(14,14) scale(1.5)" fill="#ffffff" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
 				</svg>
 				<span class="name">GitHub</span>
+			</button>
+
+			<button class="desk-ic" type="button" data-open="game">
+				<img class="glyph" src="images/lean-icon.png" alt="LEAN 게임 아이콘">
+				<span class="name">LEAN</span>
 			</button>
 		</div>
 
@@ -1194,6 +1286,30 @@
 		</footer>
 	</div>
 
+	<!-- game modal -->
+	<div class="game-modal" id="leanModal" aria-hidden="true">
+		<div class="game-dialog" role="dialog" aria-modal="true" aria-label="LEAN 외줄타기 게임">
+			<div class="game-titlebar">
+				<div class="dots"><button class="dot r" type="button" data-game-close title="닫기" aria-label="게임 닫기"></button><span class="dot y"></span><span class="dot g"></span></div>
+				<span class="title">🎮 LEAN — 외줄타기</span>
+			</div>
+			<div class="game-stage">
+				<canvas id="leanCanvas" width="800" height="450"></canvas>
+				<div class="game-nameform" id="leanNameForm" hidden>
+					<div class="nf-box">
+						<p class="nf-title">기록을 깃발로 남기시겠어요?</p>
+						<p class="nf-sub">다른 도전자들이 줄 위에서 당신의 깃발을 만나게 됩니다</p>
+						<input id="leanNameInput" maxlength="12" placeholder="닉네임 (최대 12자)" autocomplete="off">
+						<div class="nf-actions">
+							<button id="leanNameSave" type="button">깃발 세우기</button>
+							<button id="leanNameSkip" type="button">건너뛰기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- video modal -->
 	<div class="video-modal" data-video-modal aria-hidden="true">
 		<div class="video-dialog" role="dialog" aria-modal="true" aria-label="숙박 양도 웹앱 영상">
@@ -1202,6 +1318,7 @@
 		</div>
 	</div>
 
+	<script src="js/lean.js"></script>
 	<script>
 		const tree = document.querySelector(".tree");
 		const panels = document.querySelectorAll("[data-panel]");
@@ -1318,6 +1435,7 @@
 				if (what === "finder") openWindow();
 				else if (what === "resume") window.open(resumeUrl, "_blank", "noopener");
 				else if (what === "github") window.open(githubUrl, "_blank", "noopener");
+				else if (what === "game" && window.LeanGame) LeanGame.open();
 			});
 		});
 

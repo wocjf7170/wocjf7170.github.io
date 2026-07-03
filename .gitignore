@@ -141,3 +141,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,intellij
+
+# Local dev tool config
+.mcp.json
