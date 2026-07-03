@@ -55,6 +55,23 @@
 			return r.json();
 		});
 	}
+	// 간판 기본 문구 (Supabase lean_billboards 로드 실패 시 사용)
+	var BB_DEFAULT = [
+		["심재철 · 전산 운영개발", "임직원 600+ IT 운영 2년차"],
+		["BOM 쿼리 성능 97% 개선", "MSSQL 실행계획 재설계"],
+		["실적 조회 성능 85% 개선", "커버링 인덱스 최적화"],
+		["PC 700대 Win11 전환", "업무 중단 없이 완수"],
+		["야놀자 백엔드 과정 2/65", "Java · Spring Boot 우수 수료"],
+		["SQLD · TOPCIT Lv.3", "C# · ASP.NET · MSSQL"],
+		["채용 · 광고 문의", "wocjf7170@gmail.com"]
+	];
+
+	// 결정적 의사난수 (건물 배치가 매 프레임 동일해야 한다)
+	function hash01(n) {
+		var x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
+		return x - Math.floor(x);
+	}
+
 	function storeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 	function storeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ignore */ } }
 	function playerId() {
@@ -72,11 +89,11 @@
 
 	/* ---------- 시간대별 팔레트 (평온 → 폭풍) ---------- */
 	var STOPS = [
-		{ t: 0,   sky: "#cfd6c1", cloud: "#f3eeda", far: "#b8c3b1", near: "#96a795", rope: "#6e5136", post: "#4c443c", ink: "#2a2a24" },
-		{ t: 45,  sky: "#c3cdbf", cloud: "#ece8d4", far: "#adbaad", near: "#8b9d8f", rope: "#684d34", post: "#48413a", ink: "#282822" },
-		{ t: 90,  sky: "#a8b7b0", cloud: "#d8d8c8", far: "#93a49c", near: "#73877d", rope: "#5d452f", post: "#413b35", ink: "#232320" },
-		{ t: 150, sky: "#7f8f8c", cloud: "#a9aea3", far: "#6d7f7a", near: "#535f66", rope: "#4c392a", post: "#36312d", ink: "#1d1d1b" },
-		{ t: 240, sky: "#5d6b6e", cloud: "#848a84", far: "#4e5c5c", near: "#3a444c", rope: "#3f3024", post: "#2c2825", ink: "#171716" }
+		{ t: 0,   sky: "#cfd6c1", cloud: "#f3eeda", far: "#b8c3b1", bld: "#a7b5a3", near: "#96a795", rope: "#6e5136", post: "#4c443c", ink: "#2a2a24" },
+		{ t: 45,  sky: "#c3cdbf", cloud: "#ece8d4", far: "#adbaad", bld: "#9cab9e", near: "#8b9d8f", rope: "#684d34", post: "#48413a", ink: "#282822" },
+		{ t: 90,  sky: "#a8b7b0", cloud: "#d8d8c8", far: "#93a49c", bld: "#83958c", near: "#73877d", rope: "#5d452f", post: "#413b35", ink: "#232320" },
+		{ t: 150, sky: "#7f8f8c", cloud: "#a9aea3", far: "#6d7f7a", bld: "#606f70", near: "#535f66", rope: "#4c392a", post: "#36312d", ink: "#1d1d1b" },
+		{ t: 240, sky: "#5d6b6e", cloud: "#848a84", far: "#4e5c5c", bld: "#445054", near: "#3a444c", rope: "#3f3024", post: "#2c2825", ink: "#171716" }
 	];
 	function palette(t) {
 		var i = 0;
@@ -737,6 +754,7 @@
 		// 온라인 깃발 (다른 플레이어들의 기록)
 		this.flags = [];
 		this.rank = null;
+		this.billboards = BB_DEFAULT;
 		this.passFx = 0;
 		this.passName = "";
 		this.formOpen = false;
@@ -820,6 +838,15 @@
 
 	Game.prototype.flagLabel = function (f) {
 		return f.cnt > 1 ? f.name + " 외 " + (f.cnt - 1) + "명" : f.name;
+	};
+
+	Game.prototype.loadBillboards = function () {
+		var self = this;
+		sbRpc("get_lean_billboards", {}).then(function (rows) {
+			if (rows && rows.length) {
+				self.billboards = rows.map(function (r) { return [r.line1 || "", r.line2 || ""]; });
+			}
+		}).catch(function () { /* 기본 문구 유지 */ });
 	};
 
 	Game.prototype.loadRank = function () {
@@ -996,6 +1023,80 @@
 		return Math.round((base + h * amp * 0.45) / 6) * 6;
 	};
 
+	/* ----- 배경 건물 + 간판 (원경 산과 근경 산 사이 패럴랙스 레이어) ----- */
+	Game.prototype.drawBuildings = function (ctx, pal) {
+		var K = 0.25, SLOT = 190;
+		var scroll = this.rope.scroll * K;
+		var first = Math.floor(scroll / SLOT) - 1;
+		var last = first + Math.ceil(W / SLOT) + 2;
+		for (var idx = first; idx <= last; idx++) {
+			// 세 건물마다 하나는 간판 건물 (키를 맞춰 간판이 항상 줄 아래 배경에 오게)
+			var hasBB = ((idx % 3) + 3) % 3 === 1 && this.billboards.length > 0;
+			var bw = 84 + Math.round(hash01(idx) * 9) * 6;
+			var bh = hasBB
+				? 114 + Math.round(hash01(idx * 7 + 3) * 3) * 6
+				: 66 + Math.round(hash01(idx * 7 + 3) * 11) * 6;
+			var x = Math.round(idx * SLOT - scroll + (SLOT - bw) / 2);
+			if (x + bw < -80 || x > W + 80) continue;
+			var topY = 402 - bh;
+			// 몸체 (아래는 근경 산이 덮는다)
+			ctx.fillStyle = pal.bld;
+			ctx.fillRect(x, topY, bw, H - topY);
+			// 옥상 구조물
+			ctx.fillRect(x + 8, topY - 8, 14, 8);
+			// 창문
+			ctx.fillStyle = "rgba(0,0,0,0.13)";
+			for (var wy = topY + 10; wy < 392; wy += 16) {
+				for (var wx = x + 8; wx <= x + bw - 16; wx += 18) {
+					ctx.fillRect(wx, wy, 8, 8);
+				}
+			}
+			// 간판 (문구는 순서대로 순환)
+			if (hasBB) {
+				var n = this.billboards.length;
+				var msg = this.billboards[((Math.floor(idx / 3) % n) + n) % n];
+				this.drawBillboard(ctx, pal, x + bw / 2, topY, msg);
+			}
+		}
+	};
+
+	Game.prototype.drawBillboard = function (ctx, pal, cx, topY, msg) {
+		var mono = "Menlo, Consolas, 'Courier New', monospace";
+		var bw = 208, bh = 40;
+		var x = Math.round(cx - bw / 2), y = Math.round(topY + 12);
+		// 지붕에서 내려온 걸이
+		ctx.fillStyle = pal.post;
+		ctx.fillRect(Math.round(cx) - 42, topY, 4, 14);
+		ctx.fillRect(Math.round(cx) + 38, topY, 4, 14);
+		// 패널 (구름색이라 시간대에 따라 함께 어두워진다)
+		ctx.fillStyle = pal.ink;
+		ctx.fillRect(x - 3, y - 3, bw + 6, bh + 6);
+		ctx.fillStyle = pal.cloud;
+		ctx.fillRect(x, y, bw, bh);
+		// 문구 (넘치면 폰트를 줄여서 맞춘다)
+		ctx.fillStyle = pal.ink;
+		ctx.textAlign = "center";
+		var f = 13;
+		ctx.font = "700 " + f + "px " + mono;
+		while (f > 9 && ctx.measureText(msg[0]).width > bw - 12) {
+			f--;
+			ctx.font = "700 " + f + "px " + mono;
+		}
+		ctx.fillText(msg[0], Math.round(cx), y + 17);
+		if (msg[1]) {
+			f = 10;
+			ctx.font = "700 " + f + "px " + mono;
+			while (f > 8 && ctx.measureText(msg[1]).width > bw - 12) {
+				f--;
+				ctx.font = "700 " + f + "px " + mono;
+			}
+			ctx.globalAlpha = 0.7;
+			ctx.fillText(msg[1], Math.round(cx), y + 32);
+			ctx.globalAlpha = 1;
+		}
+		ctx.textAlign = "left";
+	};
+
 	Game.prototype.draw = function () {
 		var ctx = this.ctx;
 		var pal = palette(this.time);
@@ -1035,17 +1136,21 @@
 			}
 		}
 
-		// 산 (원경/근경)
+		// 산 (원경) → 건물 → 산 (근경)
 		var x;
-		for (var layer = 0; layer < 2; layer++) {
+		var self = this;
+		function mountainLayer(layer) {
 			ctx.fillStyle = layer === 0 ? pal.far : pal.near;
 			ctx.beginPath();
 			ctx.moveTo(-8, H + 8);
-			for (x = -8; x <= W + 8; x += 10) ctx.lineTo(x, this.mountainY(x, layer));
+			for (x = -8; x <= W + 8; x += 10) ctx.lineTo(x, self.mountainY(x, layer));
 			ctx.lineTo(W + 8, H + 8);
 			ctx.closePath();
 			ctx.fill();
 		}
+		mountainLayer(0);
+		this.drawBuildings(ctx, pal);
+		mountainLayer(1);
 
 		// 줄 + 기둥
 		this.rope.draw(ctx, pal);
@@ -1144,6 +1249,7 @@
 		this.modal.classList.add("is-open");
 		this.modal.setAttribute("aria-hidden", "false");
 		this.loadFlags();
+		this.loadBillboards();
 		this.toReady();
 		this.lastTs = 0;
 		if (!this.raf) {
