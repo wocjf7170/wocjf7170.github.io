@@ -507,92 +507,6 @@
 			cursor: pointer;
 		}
 
-		/* game modal */
-		.game-modal {
-			position: fixed;
-			inset: 0;
-			z-index: 50;
-			display: none;
-			align-items: center;
-			justify-content: center;
-			padding: 24px;
-			background: rgba(0, 0, 0, 0.72);
-		}
-		.game-modal.is-open { display: flex; }
-		.game-dialog {
-			width: min(920px, 96vw);
-			background: var(--panel);
-			border: 1px solid var(--line);
-			border-radius: var(--radius);
-			box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
-			overflow: hidden;
-		}
-		.game-titlebar {
-			display: flex;
-			align-items: center;
-			gap: 14px;
-			padding: 10px 14px;
-			background: var(--titlebar);
-			border-bottom: 1px solid var(--line);
-		}
-		.game-titlebar .title {
-			font-size: 13px;
-			font-weight: 700;
-			color: var(--muted);
-			letter-spacing: 0.01em;
-		}
-		#leanCanvas {
-			display: block;
-			width: 100%;
-			height: auto;
-			background: #cfd6c1;
-			image-rendering: pixelated;
-			touch-action: none;
-		}
-		.game-stage { position: relative; }
-		.game-nameform {
-			position: absolute;
-			inset: 0;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background: rgba(18, 18, 16, 0.55);
-		}
-		.game-nameform[hidden] { display: none; }
-		.nf-box {
-			width: min(360px, 86%);
-			padding: 22px 24px;
-			background: #1d1d1b;
-			border: 1px solid rgba(244, 240, 226, 0.25);
-			text-align: center;
-			font-family: Menlo, Consolas, "Courier New", monospace;
-		}
-		.nf-title { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: #f4f0e2; }
-		.nf-sub { margin: 0 0 14px; font-size: 12px; color: rgba(244, 240, 226, 0.6); }
-		.nf-box input {
-			width: 100%;
-			padding: 9px 10px;
-			margin-bottom: 12px;
-			background: #12120f;
-			border: 1px solid rgba(244, 240, 226, 0.3);
-			color: #f4f0e2;
-			font: 700 14px Menlo, Consolas, "Courier New", monospace;
-			text-align: center;
-			outline: none;
-			box-sizing: border-box;
-		}
-		.nf-box input:focus { border-color: #b3872b; }
-		.nf-actions { display: flex; gap: 8px; justify-content: center; }
-		.nf-actions button {
-			padding: 8px 14px;
-			border: 1px solid rgba(244, 240, 226, 0.3);
-			background: #b3872b;
-			color: #12120f;
-			font: 700 13px Menlo, Consolas, "Courier New", monospace;
-			cursor: pointer;
-		}
-		#leanNameSkip { background: transparent; color: rgba(244, 240, 226, 0.65); }
-
 		.footer {
 			padding: 30px 6px 10px;
 			color: var(--muted);
@@ -726,52 +640,6 @@
 			pointer-events: none;
 		}
 
-		/* ===== projects folder window ===== */
-		.folder-win {
-			position: absolute;
-			top: 118px;
-			left: 50%;
-			width: min(320px, calc(100vw - 32px));
-			transform: translateX(-50%) translateY(8px) scale(0.95);
-			opacity: 0;
-			visibility: hidden;
-			transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
-			background: rgba(30, 33, 42, 0.9);
-			backdrop-filter: blur(18px);
-			-webkit-backdrop-filter: blur(18px);
-			border: 1px solid rgba(255, 255, 255, 0.12);
-			border-radius: 12px;
-			box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-			overflow: hidden;
-		}
-		.folder-win.open {
-			opacity: 1;
-			visibility: visible;
-			transform: translateX(-50%) translateY(0) scale(1);
-		}
-		.folder-titlebar {
-			display: flex;
-			align-items: center;
-			height: 34px;
-			padding: 0 12px;
-			background: rgba(255, 255, 255, 0.04);
-			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-		}
-		.folder-title {
-			flex: 1;
-			margin-right: 50px;
-			text-align: center;
-			font-size: 12.5px;
-			font-weight: 700;
-			color: rgba(255, 255, 255, 0.85);
-		}
-		.folder-body {
-			display: flex;
-			justify-content: center;
-			gap: 12px;
-			padding: 20px 14px 22px;
-		}
-
 		@media (max-width: 860px) {
 			.app { padding: 24px 16px 16px; }
 			.page-head { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -859,53 +727,22 @@
 				<span class="name">GitHub</span>
 			</button>
 
-			<button class="desk-ic" type="button" data-open="projects">
+			<button class="desk-ic" type="button" data-open="flowdesk">
 				<svg class="glyph" viewBox="0 0 64 64" aria-hidden="true">
 					<defs>
-						<linearGradient id="pfTop" x1="0" y1="0" x2="0" y2="1">
-							<stop offset="0" stop-color="#8ecdf7" />
-							<stop offset="1" stop-color="#5aaef0" />
-						</linearGradient>
-						<linearGradient id="pfBody" x1="0" y1="0" x2="0" y2="1">
-							<stop offset="0" stop-color="#6db9f4" />
-							<stop offset="1" stop-color="#3b8fe0" />
+						<linearGradient id="fdBg" x1="0" y1="0" x2="0" y2="1">
+							<stop offset="0" stop-color="#262a38" />
+							<stop offset="1" stop-color="#15161c" />
 						</linearGradient>
 					</defs>
-					<path d="M6 15 a4 4 0 0 1 4-4 h13 l5 5 h26 a4 4 0 0 1 4 4 v4 H6 Z" fill="url(#pfTop)" />
-					<rect x="6" y="21" width="52" height="32" rx="4" fill="url(#pfBody)" />
+					<rect x="2" y="2" width="60" height="60" rx="14" fill="url(#fdBg)" />
+					<rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+					<rect x="21" y="19" width="22" height="7" rx="3.5" fill="#5b74d6" opacity="0.45" />
+					<rect x="17.5" y="29" width="29" height="7" rx="3.5" fill="#5b74d6" opacity="0.7" />
+					<rect x="14" y="39" width="36" height="7" rx="3.5" fill="#5b74d6" />
 				</svg>
-				<span class="name">개인 프로젝트</span>
+				<span class="name">FlowDesk</span>
 			</button>
-		</div>
-
-		<div class="folder-win" id="projectsWin" role="dialog" aria-label="개인 프로젝트 폴더" aria-hidden="true">
-			<div class="folder-titlebar">
-				<div class="dots"><button class="dot r" type="button" data-close-projects title="닫기" aria-label="폴더 닫기"></button><span class="dot y"></span><span class="dot g"></span></div>
-				<span class="folder-title">📁 개인 프로젝트</span>
-			</div>
-			<div class="folder-body">
-				<button class="desk-ic" type="button" data-open="game">
-					<img class="glyph" src="images/lean-icon.png" alt="LEAN 게임 아이콘">
-					<span class="name">LEAN</span>
-				</button>
-
-				<button class="desk-ic" type="button" data-open="flowdesk">
-					<svg class="glyph" viewBox="0 0 64 64" aria-hidden="true">
-						<defs>
-							<linearGradient id="fdBg" x1="0" y1="0" x2="0" y2="1">
-								<stop offset="0" stop-color="#262a38" />
-								<stop offset="1" stop-color="#15161c" />
-							</linearGradient>
-						</defs>
-						<rect x="2" y="2" width="60" height="60" rx="14" fill="url(#fdBg)" />
-						<rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
-						<rect x="21" y="19" width="22" height="7" rx="3.5" fill="#5b74d6" opacity="0.45" />
-						<rect x="17.5" y="29" width="29" height="7" rx="3.5" fill="#5b74d6" opacity="0.7" />
-						<rect x="14" y="39" width="36" height="7" rx="3.5" fill="#5b74d6" />
-					</svg>
-					<span class="name">FlowDesk</span>
-				</button>
-			</div>
 		</div>
 
 		<p class="desk-hint">아이콘을 클릭해 포트폴리오를 여세요</p>
@@ -1059,6 +896,13 @@
 									<span class="twisty-spacer"></span>
 									<svg class="ic ic-file"><use href="#ic-file" /></svg>
 									<span class="label">라이선스 발급 관리 플랫폼</span>
+								</button>
+							</li>
+							<li class="file">
+								<button class="node" data-node="pf-flowdesk" data-type="file">
+									<span class="twisty-spacer"></span>
+									<svg class="ic ic-file"><use href="#ic-file" /></svg>
+									<span class="label">FlowDesk 데스크톱 위젯</span>
 								</button>
 							</li>
 						</ul>
@@ -1325,6 +1169,10 @@
 							<h3>라이선스 발급 관리 플랫폼</h3>
 							<p>웹 개발 인턴 프로젝트 · AWS EC2 운영</p>
 						</div>
+						<div class="mini-card">
+							<h3>FlowDesk 데스크톱 위젯</h3>
+							<p>1인 개인 프로젝트 · Windows / macOS 배포</p>
+						</div>
 					</div>
 					<p style="margin-top:18px;color:var(--muted);font-weight:600;">왼쪽 폴더를 펼쳐 각 프로젝트의 상세 내용을 확인하세요.</p>
 				</article>
@@ -1365,36 +1213,30 @@
 					</ul>
 					<a class="project-link" href="https://github.com/wocjf7170/springboot-web-for-reseller" target="_blank" rel="noopener">GitHub Code →</a>
 				</article>
+
+				<!-- FlowDesk 데스크톱 위젯 -->
+				<article class="panel" data-panel="pf-flowdesk">
+					<p class="eyebrow">Portfolio</p>
+					<h2>FlowDesk 데스크톱 위젯</h2>
+					<div class="panel-meta">1인 개인 프로젝트 · Windows(Microsoft Store) / macOS 배포</div>
+					<div class="stack">
+						<span class="tag">데스크톱 앱</span><span class="tag">로컬 우선</span><span class="tag">마크다운</span><span class="tag">단축키 캡처</span><span class="tag">Microsoft Store</span>
+					</div>
+					<p class="lead" style="margin-top:16px;">"스치는 생각이, 일정이 됩니다" — 메모 앱을 여는 사이 놓치는 생각을 단축키 한 번으로 즉시 붙잡는 데스크톱 위젯입니다.</p>
+					<ul class="clean-list">
+						<li><strong>문제</strong> — 메모 앱을 열고 전환하는 짧은 순간에 떠오른 생각을 놓치고, 정리 부담 때문에 기록 자체를 미루게 됨</li>
+						<li><strong>역할</strong> — 기획부터 개발·배포까지 1인 진행. 전역 단축키 캡처, 데이터 저장 구조, 스토어/릴리스 배포 담당</li>
+						<li><strong>해결</strong> — 전역 단축키(⌘/Ctrl+Shift+Space)로 어디서나 입력창 호출, STAGING → ORIGIN → CALENDAR 3단계 흐름으로 정리 부담 없이 생각을 일정으로 전환</li>
+						<li><strong>결과</strong> — 모든 데이터를 로컬에 저장(구글 로그인·드라이브 백업은 선택)하는 로컬 우선 앱으로 Windows Microsoft Store·macOS에 배포</li>
+					</ul>
+					<a class="project-link" href="https://wocjf7170.github.io/flowdesk-release/" target="_blank" rel="noopener">FlowDesk 소개 페이지 →</a>
+				</article>
 			</div>
 		</div>
 
 		<footer class="footer">
 			<p>© <script>document.write(new Date().getFullYear());</script> Shim JaeCheol · wocjf7170@gmail.com</p>
 		</footer>
-	</div>
-
-	<!-- game modal -->
-	<div class="game-modal" id="leanModal" aria-hidden="true">
-		<div class="game-dialog" role="dialog" aria-modal="true" aria-label="LEAN 외줄타기 게임">
-			<div class="game-titlebar">
-				<div class="dots"><button class="dot r" type="button" data-game-close title="닫기" aria-label="게임 닫기"></button><span class="dot y"></span><span class="dot g"></span></div>
-				<span class="title">🎮 LEAN — 외줄타기</span>
-			</div>
-			<div class="game-stage">
-				<canvas id="leanCanvas" width="800" height="450"></canvas>
-				<div class="game-nameform" id="leanNameForm" hidden>
-					<div class="nf-box">
-						<p class="nf-title">기록을 깃발로 남기시겠어요?</p>
-						<p class="nf-sub">다른 도전자들이 줄 위에서 당신의 깃발을 만나게 됩니다</p>
-						<input id="leanNameInput" maxlength="12" placeholder="닉네임 (최대 12자)" autocomplete="off">
-						<div class="nf-actions">
-							<button id="leanNameSave" type="button">깃발 세우기</button>
-							<button id="leanNameSkip" type="button">건너뛰기</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 
 	<!-- video modal -->
@@ -1405,7 +1247,6 @@
 		</div>
 	</div>
 
-	<script src="js/lean.js"></script>
 	<script>
 		const tree = document.querySelector(".tree");
 		const panels = document.querySelectorAll("[data-panel]");
@@ -1506,15 +1347,6 @@
 		const githubUrl = "https://github.com/wocjf7170";
 		const flowdeskUrl = "https://wocjf7170.github.io/flowdesk-release/";
 
-		const projectsWin = document.getElementById("projectsWin");
-		const projectsCloseBtn = document.querySelector("[data-close-projects]");
-
-		function toggleProjects(force) {
-			const open = force !== undefined ? force : !projectsWin.classList.contains("open");
-			projectsWin.classList.toggle("open", open);
-			projectsWin.setAttribute("aria-hidden", String(!open));
-		}
-
 		function closeWindow() {
 			body.classList.add("closed");
 			desktop.setAttribute("aria-hidden", "false");
@@ -1522,14 +1354,9 @@
 		function openWindow() {
 			body.classList.remove("closed");
 			desktop.setAttribute("aria-hidden", "true");
-			toggleProjects(false);
 		}
 
 		if (closeBtn) closeBtn.addEventListener("click", closeWindow);
-		if (projectsCloseBtn) projectsCloseBtn.addEventListener("click", () => toggleProjects(false));
-		document.addEventListener("keydown", (e) => {
-			if (e.key === "Escape" && projectsWin.classList.contains("open")) toggleProjects(false);
-		});
 
 		document.querySelectorAll("[data-open]").forEach((icon) => {
 			icon.addEventListener("click", () => {
@@ -1538,8 +1365,6 @@
 				else if (what === "resume") window.open(resumeUrl, "_blank", "noopener");
 				else if (what === "github") window.open(githubUrl, "_blank", "noopener");
 				else if (what === "flowdesk") window.open(flowdeskUrl, "_blank", "noopener");
-				else if (what === "projects") toggleProjects();
-				else if (what === "game" && window.LeanGame) LeanGame.open();
 			});
 		});
 
