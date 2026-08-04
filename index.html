@@ -743,6 +743,11 @@
 				</svg>
 				<span class="name">FlowDesk</span>
 			</button>
+
+			<button class="desk-ic" type="button" data-open="fof">
+				<img class="glyph" src="images/friend-of-friend.png" alt="Friend of Friend 앱" style="border-radius:13px" />
+				<span class="name">Friend of Friend</span>
+			</button>
 		</div>
 
 		<p class="desk-hint">아이콘을 클릭해 포트폴리오를 여세요</p>
@@ -1346,6 +1351,7 @@
 		const resumeUrl = "resources/resume-shim-jaecheol.pdf";
 		const githubUrl = "https://github.com/wocjf7170";
 		const flowdeskUrl = "https://wocjf7170.github.io/flowdesk-release/";
+		const fofUrl = "https://friend-of-friend.wocjf7170.workers.dev/";
 
 		function closeWindow() {
 			body.classList.add("closed");
@@ -1365,6 +1371,7 @@
 				else if (what === "resume") window.open(resumeUrl, "_blank", "noopener");
 				else if (what === "github") window.open(githubUrl, "_blank", "noopener");
 				else if (what === "flowdesk") window.open(flowdeskUrl, "_blank", "noopener");
+				else if (what === "fof") window.open(fofUrl, "_blank", "noopener");
 			});
 		});
 
