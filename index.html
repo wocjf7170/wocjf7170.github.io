@@ -1384,6 +1384,10 @@
 		tickClock();
 		setInterval(tickClock, 20000);
 	</script>
+
+	<!-- AI 이력 안내 챗봇 위젯 · 백엔드 준비되면 apiBase 채우기(빈 값이면 정적 FAQ 폴백) -->
+	<script>window.CHATBOT_CONFIG = { apiBase: "", faqUrl: "./faq.json" };</script>
+	<script src="js/chat-widget.js" defer></script>
 </body>
 
 </html>
